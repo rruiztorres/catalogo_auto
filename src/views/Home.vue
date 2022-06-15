@@ -6,7 +6,7 @@
       width="290"
       app
     >
-      <Navigation></Navigation>
+      <Navigation @change="changeObject"></Navigation>
     </v-navigation-drawer>
 
     <v-app-bar app class="mainBar">
@@ -21,8 +21,11 @@
 
     <!-- MAIN -->
     <v-main id="mainContent">
-      <Buscador></Buscador>
-      <Main></Main>
+      <v-card>
+        <Buscador></Buscador>
+      </v-card>
+      <br/>
+      <Main :active="activeObject"></Main>
     </v-main>
   </v-app>
 </template>
@@ -39,7 +42,14 @@ import Main from '@/components/Main.vue';
 
     data(){
       return{
-        drawer: null
+        drawer: null,
+        activeObject: { codigo: "0194l", esquema: "BTN"}    //default
+      }
+    },
+
+    methods:{
+      changeObject(params){
+        this.activeObject = params;
       }
     }
   }
@@ -49,8 +59,6 @@ import Main from '@/components/Main.vue';
   #appWrapper {
     font-family: 'Red Hat Display';
     font-weight: 300;
-    max-height: 94.8vh !important;
-    overflow: hidden;
   }
 
   #drawer {

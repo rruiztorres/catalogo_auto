@@ -1,14 +1,18 @@
 <template>
   <v-app id="appWrapper">
+
+
+    <!-- NAVIGATION -->
     <v-navigation-drawer
       id="drawer"
       v-model="drawer"
-      width="290"
+      width="300"
       app
     >
       <Navigation @change="changeObject"></Navigation>
     </v-navigation-drawer>
 
+    <!-- HEADER -->
     <v-app-bar app class="mainBar">
       <div class="navBarContainer">
         <v-icon @click="drawer = !drawer" dark>mdi-menu</v-icon>
@@ -18,14 +22,9 @@
       </div>
     </v-app-bar>
 
-
     <!-- MAIN -->
     <v-main id="mainContent">
-      <v-card>
-        <Buscador></Buscador>
-      </v-card>
-      <br/>
-      <Main :active="activeObject"></Main>
+        <Main :active="activeObject"></Main>
     </v-main>
   </v-app>
 </template>
@@ -66,6 +65,7 @@ import Main from '@/components/Main.vue';
   }
 
   #mainContent{
+    display: inline-flex;
     background-color: rgb(249, 249, 249) !important;
     padding-left: 1rem !important;
     padding-right: 1rem !important;

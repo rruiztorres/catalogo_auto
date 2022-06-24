@@ -1,4 +1,6 @@
-<h2>Normas de captura</h2>
+<template>
+	<div>
+		<h2>Normas de captura</h2>
 <p>Como norma general las entidades que se capturan para este objeto geográfico son elementos superficiales y representan el límite de separación entre la zona terrestre y la fluvial o marítima, existente en el instante de la captura. Su altura (Z) debe ser constante. Estos objetos deben capturarse en sentido horario.</p>
 
 <p>En el caso de las islas marítimas se capturan a cota cero y coincidente su contorno con línea de costa y curva de nivel de cota cero.</p>
@@ -15,16 +17,18 @@
 <h3>Ejemplos de captura</h3>
 <div class="picture">
 	<i>
-		<img src="imagenes/0425s_isla_1.png">
+		<img src="../img/0425s_isla_1.png">
 		<p>Captura de islas marítimas (indep. de su superficie)</p>
 	</i>
 </div>
 
 <div class="picture">
 	<i>
-		<img src="imagenes/0425s_isla_2.png">
+		<img src="../img/0425s_isla_2.png">
 		<p>Captura de isla fluvial (aguas interiores) en un curso natural de tipo superficial.</p>
 	</i>
 </div>
 
 <h2>Notas</h2>
+	</div>
+</template>

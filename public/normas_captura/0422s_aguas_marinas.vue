@@ -1,4 +1,6 @@
-<h2>Normas de captura</h2>
+<template>
+	<div>
+		<h2>Normas de captura</h2>
 <p>Las entidades que se capturan para este objeto geográfico son elementos superficiales capturados por su contorno que representan cualquier masa de agua exterior a la línea
 de costa.</p>
 
@@ -15,28 +17,28 @@ continua aguas adentro, teniendo en cuenta la línea de costa, ha de capturarse 
 <h3>Ejemplos</h3>
 <div class="picture">
 	<i>
-		<img src="imagenes/0422s_ria_1.png">
+		<img src="../img/0422s_ria_1.png">
 		<p><i><strong>correcta</strong> Ría (Ría de Vigo)</i></p>
 	</i>
 </div>
 
 <div class="picture">
 	<i>
-		<img src="imagenes/0422s_ria_2.png">
+		<img src="../img/0422s_ria_2.png">
 		<p><i>Captura <strong>incorrecta</strong> Ría (Ría de Vigo)</i></p>
 	</i>
 </div>
 
 <div class="picture">
 	<i>
-		<img src="imagenes/0422s_ria_3.png">
+		<img src="../img/0422s_ria_3.png">
 		<p><i>Captura <strong>correcta</strong> de Ría aguas exteriores hasta la línea de costa (parte izquierda - azul claro)</i></p>
 	</i>
 </div>
 
 <div class="picture">
 	<i>
-		<img src="imagenes/0422s_ria_4.png">
+		<img src="../img/0422s_ria_4.png">
 		<p><i>Continuación de la captura <strong>como curso natural</strong> 
 			desde la línea de costa (parte derecha - azul oscuro) <strong>Captura correcta</strong></i></p>
 	</i>
@@ -46,3 +48,5 @@ continua aguas adentro, teniendo en cuenta la línea de costa, ha de capturarse 
 <p>Solo se capturan como ría, aquellos elementos <strong>situados en aguas exteriores</strong> (mar adentro desde la línea de costa). Si parte de la ría continua <strong>aguas adentro</strong>, teniendo en cuenta la línea de costa, ha de capturarse como <strong>curso natural superficial</strong><i> (ver 0401s_curso_natural)</i></p>
 
 <h2>Notas</h2>
+	</div>
+</template>

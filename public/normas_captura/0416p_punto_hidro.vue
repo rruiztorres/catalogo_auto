@@ -1,4 +1,6 @@
-<h2>Normas de captura</h2>
+<template>
+	<div>
+		<h2>Normas de captura</h2>
 <p>Como norma general las entidades que se recogen para este objeto geográfico se capturan como <strong>elementos puntuales indicativos del lugar</strong> donde están situados representando las fuentes, manantiales y pozos.</p>
 
 <p>En el caso de los siguientes elementos se atenderá, además, a sus normas específicas:</p>
@@ -24,14 +26,14 @@
 
 <div class="picture">
 	<i>
-	<img src="imagenes/0416p_punto_hidrografico_1.png">
+	<img src="../img/0416p_punto_hidrografico_1.png">
 	<p>Captura de una línea de pozos.</p>
 	</i>
 </div>
 
 <div class="picture">
 	<i>
-	<img src="imagenes/0416p_punto_hidrografico_2.png">
+	<img src="../img/0416p_punto_hidrografico_2.png">
 	<p>Cascada situada en un curso natural.</p>
 	</i>
 </div>
@@ -40,3 +42,5 @@
 <p>Como norma general se representan <strong>todos los elementos, salvo en el caso de PK de canal</strong>, el cual solo deben tener representación los hitos kilométricos <strong>identificados</strong> mediante trabajos de campo y en el <strong>sentido y posición</strong> que se corresponda con la del hito o señal.</p>
 
 <h2>Notas</h2>
+	</div>
+</template>

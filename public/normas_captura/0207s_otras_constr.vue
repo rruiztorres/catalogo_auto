@@ -11,12 +11,18 @@
 
 		<h3>Ejemplos de captura</h3>
 
-		<div class="picture"><img src="../img/0207s_otras_construcciones_1.png">
-		<p><i>-Ejemplo 1 -Transformador ubicado en una central térmica. </i></p>
+		<div class="picture">
+			
+				<img src="../img/0207s_otras_construcciones_1.png">
+				<p><i>-Ejemplo 1 -Transformador ubicado en una central térmica.</i></p>
+			
 		</div>
 
-		<div class="picture"><img src="../img/0207s_otras_construcciones_2.png">
-		<p><i>-Ejemplo 2- Pistas deportivas y campo de fútbol ubicados en una zona de cultura y ocio</i></p>
+		<div class="picture">
+			
+				<img src="../img/0207s_otras_construcciones_2.png">
+				<p><i>-Ejemplo 2- Pistas deportivas y campo de fútbol ubicados en una zona de cultura y ocio.</i></p>
+			
 		</div>
 		<br>
 		<div class="picture">
@@ -24,7 +30,6 @@
 				<img src="../img/0207s_otras_construcciones_3.png">
 				<p>-Ejemplo 3- Campo de fútbol en el interior de una pista de atletismo.</p>
 			</i>
-
 		</div>
 
 		<h2>Notas</h2>

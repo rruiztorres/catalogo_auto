@@ -4,36 +4,58 @@
 
         <h2 class="mainTitle">CATÁLOGO OBJETOS</h2>
 
+        <!-- SELECCION DE ESQUEMA -->
+        <v-btn-toggle
+            v-model="activeSchema"
+            class="schemaSelection"
+            active-class="btnActive"
+            dense
+        > 
+            <v-btn
+                v-for="schema in schemas"
+                :key="schema"
+                width="33.33%"
+            >{{schema}}
+            </v-btn>
+        </v-btn-toggle>
+
+        <br/>
+
+        <!-- BARRA BUSQUEDA -->
+        <v-text-field
+            solo
+            prepend-inner-icon="mdi-magnify"
+            label="Buscar"
+            dense
+            class="searchBar"
+            v-model="searchTerm"
+        ></v-text-field>
+
+
+        <!-- MENU CARGA DINAMICA -->
         <v-list dark>
             <v-list-group
                 v-for="item in items"
-                :key="item.title"
-                v-model="item.active"
-                :prepend-icon="item.action"
+                :prepend-icon="item.icon"
+                :key="item.group"
+                color="#3c8dbc"
             >
                 <template v-slot:activator>
                     <v-list-item-content>
-                        <v-list-item-title v-text="item.title"></v-list-item-title>
+                        <v-list-item-title>{{item.group}}</v-list-item-title>
                     </v-list-item-content>
                 </template>
-
-                <v-list-item
-                dense
-                v-for="child in item.items"
-                :key="child.codigo"
-                class="listChild"
-                link
-                dark
-                @click="activateItem(child.active)"
-                >
-                <v-list-item-icon><v-icon v-text="child.icon"></v-icon></v-list-item-icon>
-                <v-list-item-content>
-                    <v-list-item-title>
-                        <div v-if="child.code && child.code !== 'None'">{{child.code}} _ {{child.title}}</div>
-                        <div v-else>{{child.title}}</div>
-                    </v-list-item-title>
-                </v-list-item-content>
-                </v-list-item>
+                    <v-list-item
+                        v-for="element in item.values"
+                        :key="element.code"
+                        dense
+                        active-class="btnActive"
+                        dark class="listChild"
+                        @click="activateItem(element.active)"
+                    >   
+                        <v-list-item-icon><v-icon>mdi-square-medium</v-icon></v-list-item-icon>
+                        <v-list-item-title>{{element.code}} {{element.title}}</v-list-item-title>
+                    </v-list-item>
             </v-list-group>
         </v-list>
     </div>
@@ -44,44 +66,56 @@
     import axios from 'axios';
     import {getGroupBtnIcon} from '@/assets/mixins/getGroupBtnIcon';
     import {getGroupRtIcon} from '@/assets/mixins/getGroupRtIcon';
+    import {classifyGroupBTN} from '@/assets/mixins/classifyGroupBTN';
+    import {classifyGroupRT} from '@/assets/mixins/classifyGroupRT';
 
     export default {
         name: 'Navigation',
-        mixins: [getGroupBtnIcon, getGroupRtIcon],
+        mixins: [getGroupBtnIcon, getGroupRtIcon, classifyGroupBTN, classifyGroupRT],
 
         data(){
             return{
                 apiRoute: process.env.VUE_APP_API,
-                items: [
-                        // 0
-                        {
-                        title: 'BDIG',
-                        action: 'mdi-database',
-                        active: false,
-                        items: [
-                            { code: undefined, title: 'Atributos Comunes', icon: 'mdi-earth', active: undefined},
-                            { code: '0194l', title: 'Itinerario', icon: 'mdi-road-variant', active: undefined},
-                            { code: '0197l', title: 'Vía Pecuaria', icon: 'mdi-road-variant', active: undefined},
-                            { code: '0201s', title: 'Edificio', icon: 'mdi-home-city', active: undefined},
-                            ],
-                        },
+                schemas: ['BDIG', 'BTN', 'RT'],
+                activeSchema: 1,
+                items: [],
+                searchTerm: undefined,
+            }
+        },
 
-                        //1
-                        {
-                        title: 'BTN',
-                        action: 'mdi-map',
-                        active: false,
-                        items: [],
-                        },
+        watch:{
+            activeSchema(){
+                this.checkActiveSchema()
+            },
 
-                        //2
-                        {
-                        title: 'RT',
-                        action: 'mdi-road-variant',
-                        active: false,
-                        items: [],
-                        },
-                    ],
+            searchTerm(){
+                if(this.searchTerm !== undefined){
+                    if(this.searchTerm !== ''){
+                        //BUSQUEDA DEPENDE DEL ESQUEMA ACTIVO (btn, bdig, rt)
+                        if(this.activeSchema === 0){
+                            axios
+                            .get(this.apiRoute + '/api/v1/bdig/search/' + this.searchTerm)
+                            .then((data) => {
+                            this.$emit("searchResults", {termino: this.searchTerm, resultados: data.data})
+                            })  
+                        } else if (this.activeSchema === 1){
+                            axios
+                            .get(this.apiRoute + '/api/v1/btn/search/' + this.searchTerm)
+                            .then((data) => {
+                            this.$emit("searchResults", {termino: this.searchTerm, resultados: data.data})
+                            })  
+                        } else if (this.activeSchema === 2){
+                            axios
+                            .get(this.apiRoute + '/api/v1/rt/search/' + this.searchTerm)
+                            .then((data) => {
+                            this.$emit("searchResults", {termino: this.searchTerm, resultados: data.data})
+                            })  
+                        }
+                    } else {
+                        this.$emit("searchResults", undefined)
+                    }
+    
+                }
             }
         },
 
@@ -90,87 +124,62 @@
         },
 
         methods: {
-
             activateItem(params){
                 this.$emit('change', params)
             },
             
             initialize(){
-                this.getBtnObjects();
-                this.getRtObjects();
+                this.checkActiveSchema()
+            },
+
+            checkActiveSchema(){
+                if(this.schemas[this.activeSchema] === 'BDIG'){
+                    this.getBDIGObjects();
+                    this.$emit("schemaActive", 'BDIG')
+                }
+                else if(this.schemas[this.activeSchema] === 'BTN'){
+                    this.getBtnObjects();
+                    this.$emit("schemaActive", 'BTN')
+                }
+                else if(this.schemas[this.activeSchema] === 'RT'){
+                    this.getRtObjects();
+                    this.$emit("schemaActive", 'RT')
+                }
+            },
+
+            //BDIG de momento es igual que BTN
+            async getBDIGObjects(){
+                this.items = [];
+                axios
+                .get(this.apiRoute + '/api/v1/bdig/objects')
+                .then ((data) => {
+                    this.btnObjects = data.data.resultados;
+                    this.items = this.classifyGroupBTN(this.btnObjects);
+                })
             },
 
             async getBtnObjects(){
+                this.items = [];
                 axios
                 .get(this.apiRoute + '/api/v1/btn/objects')
                 .then ((data) => {
                     this.btnObjects = data.data.resultados;
-                    this.items[1].items = [];
-
-                    //Atributos Comunes
-                    this.items[1].items = [
-                        {
-                            code: undefined, 
-                            title: 'Atributos comunes', 
-                            icon: 'mdi-earth',
-                            active: {
-                                esquema: 'BTN',
-                                codigo: undefined,
-                            } 
-                        }
-                    ]
-
-                    //Creamos indice a partir de los objetos
-                    for (this.index in this.btnObjects) {
-                        this.newBtnObject = {
-                            code: this.btnObjects[this.index].codigo, 
-                            title: this.btnObjects[this.index].nom_corto, 
-                            icon: this.getGroupBtnIcon(this.btnObjects[this.index].codigo), //DEVUELVE UN ICONO
-                            active: {
-                               esquema: 'BTN',
-                               codigo: this.btnObjects[this.index].codigo,
-                            }
-                        }
-                        this.items[1].items.push(this.newBtnObject)
-                    }
+                    this.items = this.classifyGroupBTN(this.btnObjects);
                 })
+                
             },
 
             async getRtObjects(){
+                this.items = [];
                 axios
                 .get(this.apiRoute + '/api/v1/rt/objects')
-                .then((data) => {
+                .then ((data) => {
                     this.rtObjects = data.data.resultados;
-                    this.items[2].items = [];
-
-                    //Atributos Comunes
-                    this.items[2].items = [
-                        {
-                            code: undefined, 
-                            title: 'Atributos comunes', 
-                            icon: 'mdi-earth',
-                            active: {
-                                esquema: 'RT',
-                                codigo: undefined,
-                            } 
-                        }
-                    ]
-
-                    //Creamos indice a partir de los objetos
-                    for (this.index in this.rtObjects) {
-                        this.newRtObject = {
-                            code: this.rtObjects[this.index].codigo, 
-                            title: this.rtObjects[this.index].nom_corto, 
-                            icon: this.getGroupRtIcon(this.rtObjects[this.index].codigo),
-                            active: {
-                               esquema: 'RT',
-                               codigo: this.rtObjects[this.index].codigo,
-                            }
-                        }
-                        this.items[2].items.push(this.newRtObject)
-                    }
+                    this.items = this.classifyGroupRT(this.rtObjects);
                 })
-            }
+                
+            },
+
         }
     }
 </script>
@@ -178,6 +187,24 @@
 <style scoped>
     h1, h3{
         font-weight: 300 !important;
+    }
+
+    .searchBar{
+       margin: 1reM !important;
+    }
+
+    .menuSelected{
+       background-color: red !important;
+    }
+
+    .schemaSelection {
+        display: block; 
+        margin: 0rem 1rem 0rem 1rem;
+    }
+
+    .btnActive {
+        background-color: #3c8dbc !important;
+        color: white !important;
     }
 
     .mainTitle{
@@ -208,7 +235,7 @@
     }
 
     .listChild{
-        margin-left: 1rem;
+        margin-left: 0.5rem;
     }
 
 </style>   

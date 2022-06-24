@@ -30,6 +30,21 @@
             <CursoNaturalS v-if="objectCode.codigo === '0401s'"></CursoNaturalS>
             <CursoArtificialL v-if="objectCode.codigo === '0404l'"></CursoArtificialL>
             <CursoArtificialS v-if="objectCode.codigo === '0404s'"></CursoArtificialS>
+            <LaminaAgua v-if="objectCode.codigo === '0407s'"></LaminaAgua>
+            <Embalse v-if="objectCode.codigo === '0410s'"></Embalse>
+            <Presa v-if="objectCode.codigo === '0413l'"></Presa>
+            <Glaciar v-if="objectCode.codigo === '0419s'"></Glaciar>
+            <AguasMarinas v-if="objectCode.codigo === '0422s'"></AguasMarinas>
+            <Isla v-if="objectCode.codigo === '0425s'"></Isla>
+            <Costa v-if="objectCode.codigo === '0428l'"></Costa>
+            <CurvaNivel v-if="objectCode.codigo === '0501l'"></CurvaNivel>
+            <PuntoCota v-if="objectCode.codigo === '0504l'"></PuntoCota>
+            <CadenaMont v-if="objectCode.codigo === '0507l'"></CadenaMont>
+            <Lugar v-if="objectCode.codigo === '0510l'"></Lugar>
+            <LugarP v-if="objectCode.codigo === '0510p'"></LugarP>
+            <ElementoCostero v-if="objectCode.codigo === '0513p'"></ElementoCostero>
+            <ConjElm v-if="objectCode.codigo === '0516z'"></ConjElm>
+            <EspNatProt v-if="objectCode.codigo ==='0701z'"></EspNatProt>
         </div>
     </div>  
 </template>
@@ -64,7 +79,22 @@
     import CursoNaturalS from "../../public/normas_captura/0401s_curso_natural.vue";
     import CursoArtificialL from "../../public/normas_captura/0404l_curso_artificial.vue";
     import CursoArtificialS from "../../public/normas_captura/0404s_curso_artificial.vue";
-
+    import LaminaAgua from "../../public/normas_captura/0407s_lamina_agua.vue";
+    import Embalse from "../../public/normas_captura/0410s_embalse.vue";
+    import Presa from "../../public/normas_captura/0413l_presa.vue";
+    import PuntoHidro from "../../public/normas_captura/0416p_punto_hidro.vue";
+    import Glaciar from "../../public/normas_captura/0419s_glaciar.vue";
+    import AguasMarinas from "../../public/normas_captura/0422s_aguas_marinas.vue";
+    import Isla from "../../public/normas_captura/0425s_isla.vue";
+    import Costa from "../../public/normas_captura/0428l_costa.vue";
+    import CurvaNivel from "../../public/normas_captura/0501l_curva_nivel.vue";
+    import PuntoCota from "../../public/normas_captura/0504p_punto_cota.vue";
+    import CadenaMont from "../../public/normas_captura/0507l_cadena_mont.vue";
+    import Lugar from "../../public/normas_captura/0510l_lugar.vue";
+    import LugarP from "../../public/normas_captura/0510p_lugar.vue";
+    import ElementoCostero from "../../public/normas_captura/0513p_elemento_costero.vue";
+    import ConjElem from "../../public/normas_captura/0516z_conjunto_elementos.vue";
+    import EspNatProt from "../../public/normas_captura/0701z_esp_nat_protegido.vue";
 
 export default {
     name: 'NormasCaptura',
@@ -97,7 +127,22 @@ export default {
         CursoNaturalS,
         CursoArtificialL,
         CursoArtificialS,
-
+        LaminaAgua,
+        Embalse,
+        Presa,
+        PuntoHidro,
+        Glaciar,
+        AguasMarinas,
+        Isla,
+        Costa,
+        CurvaNivel,
+        PuntoCota,
+        CadenaMont,
+        Lugar,
+        LugarP,
+        ElementoCostero,
+        ConjElem,
+        EspNatProt,
     },
     props: ['objectCode'],
 
@@ -110,6 +155,23 @@ export default {
 
 </script>
 
-<style scoped>
+<style>
+    .picture {
+        display: inline-table;
+        width: 100%;
+        max-width: 41rem;
+        margin-right: 1rem;
+    }
+
+    .picture img {
+        width: 100%;
+    }
+
+    h2, h3 {
+        font-weight: 400;
+        color: #3c8dbc;
+        margin: 0.5rem 0rem 0.5rem 0rem;
+    }
+
     
 </style>

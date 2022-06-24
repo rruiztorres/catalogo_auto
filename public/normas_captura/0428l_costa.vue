@@ -1,4 +1,6 @@
-<h2>Normas de captura</h2>
+<template>
+	<div>
+		<h2>Normas de captura</h2>
 <p>Como <strong>norma general</strong> las entidades que se capturan para este objeto geográfico son <strong>elementos lineales</strong> y representan el límite de separación entre la zona terrestre y la marítima. </p>
 
 <h2>Criterios de selección</h2>
@@ -9,14 +11,14 @@
 
 <div class="picture">
 	<i>
-		<img src="imagenes/0428l_costa_1.png">
+		<img src="../img/0428l_costa_1.png">
 		<p>Línea de costa natural</p>
 	</i>
 </div>
 
 <div class="picture">
 	<i>
-		<img src="imagenes/0428l_costa_2.png">
+		<img src="../img/0428l_costa_2.png">
 		<p>Línea de costa artificial en un puerto</p>
 	</i>
 </div>
@@ -33,7 +35,7 @@
 	<li><strong>Incertidumbre del MDT</strong> en la interpolación de la línea de costa (curva de nivel cota cero)</li>
 		<div class="picture">
 			<i>
-				<img src="imagenes/0428l_costa_3.png">
+				<img src="../img/0428l_costa_3.png">
 				<p>Curva de cota 0 obtenida con MDT (morado) y línea de costa en cota 0 resultante (azul)</p>
 			</i>
 		</div>
@@ -43,7 +45,10 @@
 		líneas de pleamar-bajamar del Instituto Hidrográfico de la Marina, restituciones anteriores y 
 		línea de cota cero interpolada del MDT.</li>
 		<div class="picture">
-				<img src="imagenes/0428l_costa_4.png">
+				<img src="../img/0428l_costa_4.png">
 				<p><i>Línea de costa en cota 0, desplazada de la línea tierra-mar visible en la ortofoto</i></p>
 		</div>
 </ol>
+
+	</div>
+</template>

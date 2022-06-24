@@ -20,7 +20,7 @@
 			<li><strong>Vía pecuaria representada por su margen:</strong> La vía pecuaria no atraviesa los elementos.</li>
 		</ul>
 
-		<h3>Ejemplo de captura</h3>
+		<h2>Ejemplo de captura</h2>
 		<div class="picture">
 			<i>
 				<img src="../img/0197l_via_pecuaria_1.png">

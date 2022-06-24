@@ -1,4 +1,6 @@
-<h2>Normas de captura</h2>
+<template>
+	<div>
+		<h2>Normas de captura</h2>
 <p>Como norma general se representan a través de <strong>elementos lineales continuos, sin cortes ni intersecciones entre ellas</strong> salvo en el caso de <strong>curvas auxiliares</strong> que sí pueden quedar cortadas.</p>
 
 <p>Las curvas de nivel deberán ser <strong>consecutivas a la equidistancia debida</strong>, no debiendo existir discrepancias superiores o inferiores a los <strong>10 m.</strong> entre dos curvas de nivel consecutivas.</p>
@@ -16,7 +18,7 @@
 <h3>Ejemplos de captura</h3>
 <div class="picture">
 	<i>
-		<img src="imagenes/0501l_curva_de_nivel_1.png">
+		<img src="../img/0501l_curva_de_nivel_1.png">
 		<p>Detalle de curvas de nivel cerca de un embalse.</p>
 	</i>		
 
@@ -25,3 +27,5 @@
 <p>Las <strong>curvas de nivel sobre superficie terrestre</strong> se obtienen a partir de <strong>restitución fotogramétrica</strong>. Si la actualización planimétrica de una zona ya restituida se ha hecho mediante el <strong>uso de ortofotografías</strong> digitales, la actualización altimétrica de las zonas afectadas se calcula utilizando el modelo digital de elevaciones asociado a las mismas.</p>
 
 <p>Las <strong>curvas batimétricas se obtienen a partir de las cartas náuticas</strong> que suministra el Instituto Hidrográfico de la Marina y representan un conjunto de profundidades no equidistantes entre sí, aportando menor información batimétrica a medida que aumenta la profundidad. Tienen su propia clasificación. </p>
+	</div>
+</template>

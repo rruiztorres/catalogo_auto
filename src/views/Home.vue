@@ -1,18 +1,20 @@
 <template>
   <v-app id="appWrapper">
-
-
     <!-- NAVIGATION -->
     <v-navigation-drawer
       id="drawer"
       v-model="drawer"
-      width="300"
+      width="340"
       app
     >
-      <Navigation @change="changeObject"></Navigation>
+      <Navigation 
+        @change="changeObject"
+        @searchResults="searchResult"
+        @schemaActive="sendSchema"
+      ></Navigation>
     </v-navigation-drawer>
 
-    <!-- HEADER -->
+    <!-- HEADER --> 
     <v-app-bar app class="mainBar">
       <div class="navBarContainer">
         <v-icon @click="drawer = !drawer" dark>mdi-menu</v-icon>
@@ -24,7 +26,11 @@
 
     <!-- MAIN -->
     <v-main id="mainContent">
-        <Main :active="activeObject"></Main>
+        <Main 
+          :active="activeObject"
+          :searchResults="searchTerm"
+          :schemaActive="schema"
+        ></Main>
     </v-main>
   </v-app>
 </template>
@@ -42,15 +48,25 @@ import Main from '@/components/Main.vue';
     data(){
       return{
         drawer: null,
-        activeObject: { codigo: "0194l", esquema: "BTN"}    //default
+        activeObject: { codigo: "0194l", esquema: "BTN"},    //default
+        searchTerm: undefined,
+        schema: 'BDIG',
       }
     },
 
     methods:{
       changeObject(params){
         this.activeObject = params;
+      },
+
+      searchResult(results){
+        this.searchTerm = results;
+      },
+
+      sendSchema(schema){
+        this.schema = schema;
       }
-    }
+    },
   }
 </script>
 

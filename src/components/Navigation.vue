@@ -25,6 +25,8 @@
         <v-text-field
             solo
             prepend-inner-icon="mdi-magnify"
+            append-icon="mdi-close"
+            @click:append="searchTerm = ''"
             label="Buscar"
             dense
             class="searchBar"
@@ -136,14 +138,20 @@
                 if(this.schemas[this.activeSchema] === 'BDIG'){
                     this.getBDIGObjects();
                     this.$emit("schemaActive", 'BDIG')
+                    //VALORES POR DEFECTO
+                    this.$emit('change', {codigo: "0194l", esquema: "BDIG"})
                 }
                 else if(this.schemas[this.activeSchema] === 'BTN'){
                     this.getBtnObjects();
                     this.$emit("schemaActive", 'BTN')
+                    //VALORES POR DEFECTO
+                    this.$emit('change', {codigo: "0194l", esquema: "BTN"})
                 }
                 else if(this.schemas[this.activeSchema] === 'RT'){
                     this.getRtObjects();
                     this.$emit("schemaActive", 'RT')
+                    //VALORES POR DEFECTO
+                    this.$emit('change', {codigo: "1101a", esquema: "RT"})
                 }
             },
 

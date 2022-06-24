@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- NORMAS BTN -->
-        <div v-if="objectCode.esquema === 'BTN'">
+        <div v-if="objectCode.esquema === 'BTN' || objectCode.esquema === 'BDIG'">
             <Itinerario v-if="objectCode.codigo === '0194l'"></Itinerario>
             <ViaPecuaria v-if="objectCode.codigo === '0197l'"></ViaPecuaria>
             <Edificio v-if="objectCode.codigo === '0201s'"></Edificio>
@@ -45,6 +45,10 @@
             <ElementoCostero v-if="objectCode.codigo === '0513p'"></ElementoCostero>
             <ConjElm v-if="objectCode.codigo === '0516z'"></ConjElm>
             <EspNatProt v-if="objectCode.codigo ==='0701z'"></EspNatProt>
+        </div>
+
+        <div v-if="objectCode.esquema === 'RT'">
+            <h2>No disponible por el momento</h2>
         </div>
     </div>  
 </template>

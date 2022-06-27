@@ -1,6 +1,7 @@
 <template>
     <div>
-       
+        
+        <!-- VENTANA BUSCADOR (TODO: SACAR A COMPONENTE)-->
         <v-overlay :value='searchTerms !== undefined'>
             <v-card light class="searchWindowResults">
                 <v-card-title>
@@ -132,6 +133,14 @@
                         Normas de captura
                     </v-tab>
 
+                    <!-- EJEMPLO -->
+                    <v-tab>
+                        <v-icon left>
+                        mdi-earth
+                        </v-icon>
+                        Visualizador
+                    </v-tab>
+
                     <v-tab-item>
                         <v-card class="contentCard">
                             <v-card-title>               
@@ -205,7 +214,16 @@
                                 <NormaCaptura :objectCode="normActive"></NormaCaptura>
                             </v-card-text>
                         </v-card>
-                    </v-tab-item>            
+                    </v-tab-item> 
+
+                    <!-- EJEMPLO -->
+                    <v-tab-item>
+                        <v-card class="contentCard">
+                            <v-card-text>
+                                Aqui ponemos el mapa
+                            </v-card-text>
+                        </v-card>
+                    </v-tab-item>          
                 </v-tabs>
         </v-card>
 
@@ -279,6 +297,27 @@ export default {
             this.initialize(this.normActive)
         },
 
+        highLightTerm(term, string){
+            if(term !== undefined){
+                string = string.split(term);
+                for (this.index in string){
+                    if(string[this.index] === term){
+                        this.hint = `<span style="
+                        background-color:#fcffc9; 
+                        padding:0.05rem;
+                        border: 1px solid lightgray;
+                        box-shadow: 1px 1px 1px 1px lightgray;
+                        border-radius: 4px;
+                        ">
+                        </span>`;
+                    }
+                }
+                    
+            }
+
+            return string
+        },
+
         print(){
             console.warn("imprimiendo")
         }
@@ -293,6 +332,7 @@ export default {
             searchTerms: undefined,
             term: undefined,
             normActive: undefined,
+            activeTerm: 'i',
 
             objectsHeaders: [
                 { text: "Tabla", align: "start", sortable: false, value: "tabla" },
@@ -344,8 +384,7 @@ export default {
     padding: 1rem;
     max-height: 83vh;
     overflow-y: scroll;
-    position: fixed;
-    width: 75vw;
+    width: 92%;
     }
 
     .cardTitle{

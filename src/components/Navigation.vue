@@ -27,7 +27,7 @@
             prepend-inner-icon="mdi-magnify"
             append-icon="mdi-close"
             @click:append="searchTerm = ''"
-            label="Buscar"
+            label="Buscar..."
             dense
             class="searchBar"
             v-model="searchTerm"

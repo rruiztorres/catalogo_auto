@@ -133,13 +133,6 @@
                         Normas de captura
                     </v-tab>
 
-                    <!-- EJEMPLO -->
-                    <v-tab>
-                        <v-icon left>
-                        mdi-earth
-                        </v-icon>
-                        Visualizador
-                    </v-tab>
 
                     <v-tab-item>
                         <v-card class="contentCard">
@@ -168,12 +161,12 @@
                                         <!-- esta parte hay que utilizar plantilla -->
                                         <tr>
                                             <td style="width:10%;"><b>NOM.CORTO</b></td>
-                                            <td style="width: 68%">{{objeto.nom_corto}}</td>
+                                            <td style="width: 68%"><text-highlight :queries="queries">{{objeto.nom_corto}}</text-highlight></td>
                                             <td style="width: 10%"><b>GEOMETRIA</b></td>
-                                            <td style="width: 12%">{{objeto.geometria}}</td>
+                                            <td style="width: 12%"><text-highlight :queries="queries">{{objeto.geometria}}</text-highlight></td>
                                         </tr>
                                         <tr>
-                                            <td><b>DEFINICIÓN</b></td><td colspan="3">{{objeto.definicion}}</td>
+                                            <td><b>DEFINICIÓN</b></td><td colspan="3"><text-highlight :queries="queries">{{objeto.definicion}}</text-highlight></td>
                                         </tr>
 
                                         <!--ATRIBUTOS-->
@@ -181,7 +174,7 @@
                                             <td colspan="4"><b>ATRIBUTOS</b></td>
                                         </tr>
                                         <tr v-for="atributo in objeto.attributes" :key="atributo.id">
-                                            <td ><b>{{atributo.nom_atrib}}</b></td>
+                                            <td ><b><text-highlight :queries="queries">{{atributo.nom_atrib}}</text-highlight></b></td>
                                             <td colspan="2" class="atribCol">
                                                 {{atributo.definicion}}
 
@@ -191,16 +184,16 @@
                                                     <v-simple-table class="subTable">
                                                         <tbody>
                                                             <tr v-for="valor in atributo.values" :key="valor.id">
-                                                                <td>{{valor.codigo_val}}</td>
-                                                                <td>{{valor.valor}}</td>
-                                                                <td>{{valor.definicion}}</td>
+                                                                <td><text-highlight :queries="queries">{{valor.codigo_val}}</text-highlight></td>
+                                                                <td><text-highlight :queries="queries">{{valor.valor}}</text-highlight></td>
+                                                                <td><text-highlight :queries="queries">{{valor.definicion}}</text-highlight></td>
                                                             </tr>
                                                         </tbody>
                                                     </v-simple-table>
                                                 </div>
                                                 <!-- FIN TABLA VALORES ATRIBUTO -->
                                             </td>                              
-                                            <td>{{atributo.tipo_valor}}</td>
+                                            <td><text-highlight :queries="queries">{{atributo.tipo_valor}}</text-highlight></td>
                                         </tr>
                                     </tbody>
                                 </v-simple-table>
@@ -215,15 +208,7 @@
                             </v-card-text>
                         </v-card>
                     </v-tab-item> 
-
-                    <!-- EJEMPLO -->
-                    <v-tab-item>
-                        <v-card class="contentCard">
-                            <v-card-text>
-                                Aqui ponemos el mapa
-                            </v-card-text>
-                        </v-card>
-                    </v-tab-item>          
+      
                 </v-tabs>
         </v-card>
 
@@ -269,9 +254,15 @@ export default {
                 this.term = this.searchResults.termino;
             } else {
                this.searchTerms = undefined;
+               //Borra los terminos resaltados si no se le pasan datos
+               this.queries = [''];
             }
         },
 
+        //Resalta término buscado en amarillo
+        term(){
+            this.queries = [this.term]
+        }
 
     },
 
@@ -297,27 +288,6 @@ export default {
             this.initialize(this.normActive)
         },
 
-        highLightTerm(term, string){
-            if(term !== undefined){
-                string = string.split(term);
-                for (this.index in string){
-                    if(string[this.index] === term){
-                        this.hint = `<span style="
-                        background-color:#fcffc9; 
-                        padding:0.05rem;
-                        border: 1px solid lightgray;
-                        box-shadow: 1px 1px 1px 1px lightgray;
-                        border-radius: 4px;
-                        ">
-                        </span>`;
-                    }
-                }
-                    
-            }
-
-            return string
-        },
-
         print(){
             console.warn("imprimiendo")
         }
@@ -332,7 +302,7 @@ export default {
             searchTerms: undefined,
             term: undefined,
             normActive: undefined,
-            activeTerm: 'i',
+            queries: [''],
 
             objectsHeaders: [
                 { text: "Tabla", align: "start", sortable: false, value: "tabla" },
@@ -422,7 +392,7 @@ export default {
 
     .subTableContainer {
         margin: 1rem 0rem 1rem 0rem;
-        padding: 0.5rem;
+        padding: 0.6rem;
     }
 
     .valuesTitle {

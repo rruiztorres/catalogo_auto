@@ -163,12 +163,14 @@ export default {
     .picture {
         display: inline-table;
         width: 100%;
-        max-width: 41rem;
+        max-width: 40rem;
         margin-right: 1rem;
+        
     }
 
     .picture img {
         width: 100%;
+        box-shadow: 2px 2px 3px 0px lightgrey;
     }
 
     h2, h3 {

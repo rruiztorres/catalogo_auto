@@ -25,9 +25,9 @@
         <v-text-field
             solo
             prepend-inner-icon="mdi-magnify"
-            append-icon="mdi-close"
+            :append-icon="searchTerm ? 'mdi-close' : 'mdi-close-off'"
             @click:append="searchTerm = ''"
-            label="Buscar"
+            label="Buscar..."
             dense
             class="searchBar"
             v-model="searchTerm"

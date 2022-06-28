@@ -1,6 +1,7 @@
 <template>
     <div>
-       
+        
+        <!-- VENTANA BUSCADOR (TODO: SACAR A COMPONENTE)-->
         <v-overlay :value='searchTerms !== undefined'>
             <v-card light class="searchWindowResults">
                 <v-card-title>
@@ -132,6 +133,7 @@
                         Normas de captura
                     </v-tab>
 
+
                     <v-tab-item>
                         <v-card class="contentCard">
                             <v-card-title>               
@@ -159,12 +161,12 @@
                                         <!-- esta parte hay que utilizar plantilla -->
                                         <tr>
                                             <td style="width:10%;"><b>NOM.CORTO</b></td>
-                                            <td style="width: 68%">{{objeto.nom_corto}}</td>
+                                            <td style="width: 68%"><text-highlight :queries="queries">{{objeto.nom_corto}}</text-highlight></td>
                                             <td style="width: 10%"><b>GEOMETRIA</b></td>
-                                            <td style="width: 12%">{{objeto.geometria}}</td>
+                                            <td style="width: 12%"><text-highlight :queries="queries">{{objeto.geometria}}</text-highlight></td>
                                         </tr>
                                         <tr>
-                                            <td><b>DEFINICIÓN</b></td><td colspan="3">{{objeto.definicion}}</td>
+                                            <td><b>DEFINICIÓN</b></td><td colspan="3"><text-highlight :queries="queries">{{objeto.definicion}}</text-highlight></td>
                                         </tr>
 
                                         <!--ATRIBUTOS-->
@@ -172,7 +174,7 @@
                                             <td colspan="4"><b>ATRIBUTOS</b></td>
                                         </tr>
                                         <tr v-for="atributo in objeto.attributes" :key="atributo.id">
-                                            <td ><b>{{atributo.nom_atrib}}</b></td>
+                                            <td ><b><text-highlight :queries="queries">{{atributo.nom_atrib}}</text-highlight></b></td>
                                             <td colspan="2" class="atribCol">
                                                 {{atributo.definicion}}
 
@@ -182,16 +184,16 @@
                                                     <v-simple-table class="subTable">
                                                         <tbody>
                                                             <tr v-for="valor in atributo.values" :key="valor.id">
-                                                                <td>{{valor.codigo_val}}</td>
-                                                                <td>{{valor.valor}}</td>
-                                                                <td>{{valor.definicion}}</td>
+                                                                <td><text-highlight :queries="queries">{{valor.codigo_val}}</text-highlight></td>
+                                                                <td><text-highlight :queries="queries">{{valor.valor}}</text-highlight></td>
+                                                                <td><text-highlight :queries="queries">{{valor.definicion}}</text-highlight></td>
                                                             </tr>
                                                         </tbody>
                                                     </v-simple-table>
                                                 </div>
                                                 <!-- FIN TABLA VALORES ATRIBUTO -->
                                             </td>                              
-                                            <td>{{atributo.tipo_valor}}</td>
+                                            <td><text-highlight :queries="queries">{{atributo.tipo_valor}}</text-highlight></td>
                                         </tr>
                                     </tbody>
                                 </v-simple-table>
@@ -205,7 +207,8 @@
                                 <NormaCaptura :objectCode="normActive"></NormaCaptura>
                             </v-card-text>
                         </v-card>
-                    </v-tab-item>            
+                    </v-tab-item> 
+      
                 </v-tabs>
         </v-card>
 
@@ -251,9 +254,15 @@ export default {
                 this.term = this.searchResults.termino;
             } else {
                this.searchTerms = undefined;
+               //Borra los terminos resaltados si no se le pasan datos
+               this.queries = [''];
             }
         },
 
+        //Resalta término buscado en amarillo
+        term(){
+            this.queries = [this.term]
+        }
 
     },
 
@@ -293,6 +302,7 @@ export default {
             searchTerms: undefined,
             term: undefined,
             normActive: undefined,
+            queries: [''],
 
             objectsHeaders: [
                 { text: "Tabla", align: "start", sortable: false, value: "tabla" },
@@ -344,8 +354,7 @@ export default {
     padding: 1rem;
     max-height: 83vh;
     overflow-y: scroll;
-    position: fixed;
-    width: 75vw;
+    width: 92%;
     }
 
     .cardTitle{
@@ -383,7 +392,7 @@ export default {
 
     .subTableContainer {
         margin: 1rem 0rem 1rem 0rem;
-        padding: 0.5rem;
+        padding: 0.6rem;
     }
 
     .valuesTitle {

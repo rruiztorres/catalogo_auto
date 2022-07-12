@@ -8,8 +8,7 @@
     </p>
 
     <p>
-      El valor de jerarquía (jera_0513p) se aplicará a las <b>playas</b> según
-      el siguiente criterio:
+      En el caso de las <b>playas</b>, se utilizará el siguiente criterio para los valores del atributo jerarquía (jera_0513p)
     </p>
     <ul>
       <li><b>Principal: </b>Cuando su longitud sea mayor de 1500 metros</li>

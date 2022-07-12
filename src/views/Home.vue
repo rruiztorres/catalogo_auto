@@ -109,4 +109,8 @@ import Main from '@/components/Main.vue';
     height: 6.5rem;
     display: flex;
   }
+
+  ::-webkit-scrollbar {
+        display: none;
+    }
 </style>

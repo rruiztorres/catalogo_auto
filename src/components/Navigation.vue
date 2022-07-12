@@ -36,6 +36,15 @@
 
         <!-- MENU CARGA DINAMICA -->
         <v-list dark>
+            <v-list-item
+                active-class="btnActive"
+                dark
+                @click="activateItem(commonAttributes)"
+            >
+                <v-list-item-icon><v-icon>mdi-earth</v-icon></v-list-item-icon>
+                <v-list-item-title>Atributos Comunes</v-list-item-title>
+            </v-list-item>
+
             <v-list-group
                 v-for="item in items"
                 :prepend-icon="item.icon"
@@ -116,7 +125,6 @@
                     } else {
                         this.$emit("searchResults", undefined)
                     }
-    
                 }
             }
         },
@@ -125,7 +133,7 @@
             this.initialize();
         },
 
-        methods: {
+        methods: {            
             activateItem(params){
                 this.$emit('change', params)
             },
@@ -137,18 +145,21 @@
             checkActiveSchema(){
                 if(this.schemas[this.activeSchema] === 'BDIG'){
                     this.getBDIGObjects();
+                    this.getCommonAttributes(this.schemas[this.activeSchema]);
                     this.$emit("schemaActive", 'BDIG')
                     //VALORES POR DEFECTO
                     this.$emit('change', {codigo: "0194l", esquema: "BDIG"})
                 }
                 else if(this.schemas[this.activeSchema] === 'BTN'){
                     this.getBtnObjects();
+                    this.getCommonAttributes(this.schemas[this.activeSchema]);
                     this.$emit("schemaActive", 'BTN')
                     //VALORES POR DEFECTO
                     this.$emit('change', {codigo: "0194l", esquema: "BTN"})
                 }
                 else if(this.schemas[this.activeSchema] === 'RT'){
                     this.getRtObjects();
+                    this.getCommonAttributes(this.schemas[this.activeSchema]);
                     this.$emit("schemaActive", 'RT')
                     //VALORES POR DEFECTO
                     this.$emit('change', {codigo: "1101a", esquema: "RT"})
@@ -174,7 +185,6 @@
                     this.btnObjects = data.data.resultados;
                     this.items = this.classifyGroupBTN(this.btnObjects);
                 })
-                
             },
 
             async getRtObjects(){
@@ -185,8 +195,16 @@
                     this.rtObjects = data.data.resultados;
                     this.items = this.classifyGroupRT(this.rtObjects);
                 })
-                
             },
+
+            async getCommonAttributes(schema){
+                this.commonAttributes = {
+                    esquema: schema,
+                    active: 'commonAttributes',
+                    nombre: 'Atributos Comunes',
+                    codigo: null,
+                }
+            }
 
         }
     }
@@ -239,7 +257,7 @@
     .logoImg{
         margin: 2.25rem 0rem 2rem 0rem;
         width: 100%;
-        padding: 0.5rem;
+        padding: 0.8rem;
     }
 
     .listChild{

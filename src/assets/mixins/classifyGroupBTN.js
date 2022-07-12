@@ -33,8 +33,9 @@ export const classifyGroupBTN = {
                     values: []
                 }, 
             ];
-            
 
+            
+            // INDICE OBJETOS
             for (this.index in objetos){
                 let newObject = {
                     code: this.btnObjects[this.index].codigo, 

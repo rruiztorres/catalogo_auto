@@ -38,7 +38,7 @@
             <Isla v-if="objectCode.codigo === '0425s'"></Isla>
             <Costa v-if="objectCode.codigo === '0428l'"></Costa>
             <CurvaNivel v-if="objectCode.codigo === '0501l'"></CurvaNivel>
-            <PuntoCota v-if="objectCode.codigo === '0504l'"></PuntoCota>
+            <PuntoCota v-if="objectCode.codigo === '0504p'"></PuntoCota>
             <CadenaMont v-if="objectCode.codigo === '0507l'"></CadenaMont>
             <Lugar v-if="objectCode.codigo === '0510l'"></Lugar>
             <LugarP v-if="objectCode.codigo === '0510p'"></LugarP>

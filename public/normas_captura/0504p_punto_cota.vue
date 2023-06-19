@@ -6,7 +6,7 @@
 		<ul>
 			<li><strong>En el caso particular de los picos-cimas:</strong> Un pico debe pertenecer a una sierra, en la mayoría de los casos, formando parte de ella y, en menores ocasiones, como pico aislado pero asociado a una sierra o relieve montañoso. <br>
 			Los picos del archipiélago canario no están asociados a sierras, pero se consideran picos al ser la cumbre de montañas/volcanes y otros relieves formados por erupciones volcánicas.</li>
-			<li><strong>El atributo cumre_pro </strong>sólo es aplicable cuando el punto es cumbre provincial. Si es cumbre provincial de dos provincias, concatenar prov1#prov2. La provincia no se identifica por el código sino por el nombre.</li>
+			<li><strong>El atributo cumbre_pro </strong>sólo es aplicable cuando el punto es cumbre provincial. Si es cumbre provincial de dos provincias, concatenar prov1#prov2. La provincia no se identifica por el código sino por el nombre.</li>
 		</ul>
 
 		<h3>Ejemplos de captura</h3>

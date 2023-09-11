@@ -1,7 +1,13 @@
 <template>
 	<div>
 		<h2>Normas de captura</h2>
-		<p>Las entidades que se recogen para este objeto geográfico son <strong>elementos puntuales indicativos del lugar</strong> donde se encuentra la instalación o el servicio. Se debe <strong>especificar siempre el valor del atributo tipo</strong> (tipo_0301p). Además, el <strong>atributo sustancia</strong> es obligatorio siempre que la instalación ocupe una <strong>superficie mayor de 5Ha</strong>. En caso contrario, se admite el valor -97 (desconocido).</p> 
+		<p>Las entidades que se recogen para este objeto geográfico son <b>elementos puntuales indicativos del lugar</b> 
+		donde se encuentra la instalación o el servicio. Se debe <b>especificar siempre el valor del atributo tipo</b> (tipo_0301p). 
+		Además, el <b>atributo sustancia</b> es obligatorio siempre que la instalación ocupe una <b>superficie mayor de 5Ha</b>. 
+		En caso contrario, se admite el valor -97 (desconocido).</p> 
+
+		<p>En el caso de las explotaciones subterráneas, la geometría puntual puede indicar tanto la <b>boca de entrada</b> a una galería subterránea 
+			como la <b>posición representativa</b> de toda la explotación o todo el conjunto de pozos y galerías.</p>
 
 		<h3>Ejemplo de captura</h3>
 		<div clas="picture">

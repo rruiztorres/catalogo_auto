@@ -217,7 +217,12 @@
                                             <td colspan="4"><b>ATRIBUTOS</b></td>
                                         </tr>
                                         <tr v-for="atributo in objeto.attributes" :key="atributo.id">
-                                            <td ><b><text-highlight :queries="queries">{{atributo.nom_atrib}}</text-highlight></b></td>
+                                            <td ><b><text-highlight :queries="queries">
+                                                {{atributo.nom_atrib}}</text-highlight></b>
+                                                <br/>
+                                                <span v-if="atributo.nom_codigo !== null && schemaActive !== 'RT'">({{atributo.nom_codigo}})</span>
+                                                
+                                            </td>
                                             <td colspan="2" class="atribCol">
                                                 {{atributo.definicion}}
 

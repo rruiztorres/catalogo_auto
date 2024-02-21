@@ -1,6 +1,6 @@
 <template> 
     <div id="mainWrapper"> 
-        <img class="logoImg" src="@/assets/img/logo_web_IGN_CNIG.png">
+        <img class="logoImg" src="@/assets/img/logo_web_IGN_CNIG.svg">
 
         <h2 class="mainTitle">CATÁLOGO OBJETOS</h2>
 

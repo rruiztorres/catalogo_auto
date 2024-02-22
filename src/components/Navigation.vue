@@ -81,7 +81,7 @@
     import {classifyGroupRT} from '@/assets/mixins/classifyGroupRT';
 
     export default {
-        name: 'Navigation',
+        name: 'navigation-catalogo',
         mixins: [getGroupBtnIcon, getGroupRtIcon, classifyGroupBTN, classifyGroupRT],
 
         data(){

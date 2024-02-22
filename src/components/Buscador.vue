@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        name: 'Buscador',
+        name: 'buscador-catalogo',
         data(){
             return{
                 foo: 'foo',

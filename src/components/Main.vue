@@ -227,6 +227,7 @@
                         <ViaPecuaria v-if="normActive.codigo === '0197l'"></ViaPecuaria>
                         <Edificio v-if="normActive.codigo === '0201s'"></Edificio>
                         <ConstAlmacenaje v-if="normActive.codigo === '0204s'"></ConstAlmacenaje>
+                        <ConjElem v-if="normActive.codigo === '0516z'"></ConjElem>
                         <OtrasConstruccionesL v-if="normActive.codigo === '0207l'"></OtrasConstruccionesL>
                         <OtrasConstruccionesP v-if="normActive.codigo === '0207p'"></OtrasConstruccionesP>
                         <OtrasConstruccionesS v-if="normActive.codigo === '0207s'"></OtrasConstruccionesS>
@@ -260,6 +261,7 @@
                         <Costa v-if="normActive.codigo === '0428l'"></Costa>
                         <CurvaNivel v-if="normActive.codigo === '0501l'"></CurvaNivel>
                         <PuntoCota v-if="normActive.codigo === '0504p'"></PuntoCota>
+                        <PuntoHidro v-if="normActive.codigo === '0416p'"></PuntoHidro>
                         <CadenaMont v-if="normActive.codigo === '0507l'"></CadenaMont>
                         <Lugar v-if="normActive.codigo === '0510l'"></Lugar>
                         <LugarP v-if="normActive.codigo === '0510p'"></LugarP>
@@ -284,7 +286,8 @@
         fab
         elevation="5"
         @click="print"
-        ><v-icon>mdi-printer</v-icon></v-btn>
+        ><v-icon>mdi-printer</v-icon>
+        </v-btn>
 
         
     </div>
@@ -293,7 +296,7 @@
 <script>
 import axios from 'axios';
 
- import Itinerario from "../../public/normas_captura/0194l_itinerario.vue";
+import Itinerario from "../../public/normas_captura/0194l_itinerario.vue";
 import ViaPecuaria from "../../public/normas_captura/0197l_via_pecuaria.vue";
 import Edificio from "../../public/normas_captura/0201s_edificio.vue";
 import ConstAlmacenaje from "../../public/normas_captura/0204s_constr_almacenaje.vue";
@@ -339,7 +342,7 @@ import ConjElem from "../../public/normas_captura/0516z_conjunto_elementos.vue";
 import EspNatProt from "../../public/normas_captura/0701z_esp_nat_protegido.vue";
 
 export default {
-    name: 'Main',
+    name: 'main-catalogo',
     props: ['active', 'searchResults', 'schemaActive'],
     components: {
         Itinerario, 
@@ -571,7 +574,7 @@ export default {
     }
 
     .subTable tbody tr:nth-child(odd) {
-	    background: #E6E3E3;
+        background: #E6E3E3;
     }
 
     .subTable tbody tr:nth-child(even) {

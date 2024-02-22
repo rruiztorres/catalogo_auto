@@ -38,12 +38,12 @@
 <script>
 
 import Navigation from '@/components/Navigation.vue';
-import Buscador from '@/components/Buscador.vue';
+// import Buscador from '@/components/Buscador.vue';
 import Main from '@/components/Main.vue';
 
   export default {
-    name: 'Home',
-    components: {Navigation, Buscador, Main},
+    name: 'home-catalogo',
+    components: {Navigation, Main},
 
     data(){
       return{

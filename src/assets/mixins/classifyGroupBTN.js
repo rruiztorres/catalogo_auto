@@ -28,7 +28,7 @@ export const classifyGroupBTN = {
                     values: []
                 },  
                 {
-                    group: 'Zonas admin.',
+                    group: 'Zonas administrativas',
                     icon: this.getGroupBtnIcon('07'), 
                     values: []
                 }, 
@@ -45,30 +45,10 @@ export const classifyGroupBTN = {
                         codigo: this.btnObjects[this.index].codigo,
                     }
                 }
-
-                if(objetos[this.index].codigo.slice(0,2) === '01'){
-                    itemsBTN[0].values.push(newObject)
-                }
-                else if (objetos[this.index].codigo.slice(0,2) === '02'){
-                    itemsBTN[1].values.push(newObject)
-                }
-                else if (objetos[this.index].codigo.slice(0,2) === '03'){
-                    itemsBTN[2].values.push(newObject)
-                }
-                else if (objetos[this.index].codigo.slice(0,2) === '04'){
-                    itemsBTN[3].values.push(newObject)
-                }
-                else if (objetos[this.index].codigo.slice(0,2) === '05'){
-                    itemsBTN[4].values.push(newObject)
-                }
-                else if (objetos[this.index].codigo.slice(0,2) === '07'){
-                    itemsBTN[5].values.push(newObject)
-                }
-                
+                itemsBTN[itemsBTN.map((item)=>item.group).indexOf(objetos[this.index].nombre_tema)].values.push(newObject)               
             }
-            
+
             return itemsBTN;
-            
             }
         }
     }  

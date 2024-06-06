@@ -18,6 +18,9 @@
 		<p>No se han definido criterios de selección para este objeto.</p>
 
 		<h2>Notas</h2>
-		<p>La <strong>zona agropecuaria, salina y piscifactoria</strong> debe estar asociada a una <strong>entidad puntual</strong> (ver objeto 0304p). Puede haber varias zonas asociadas al mismo punto. La asociación de las zonas al punto se recoge en el atributo “id_agsapi” (no obstante, en los trabajos de captura mediante el entorno de actualización, esta relación se materializa mediante una relationship class, empleando otros atributos internos).</p>
+		<p>La <strong>zona agropecuaria, salina y piscifactoria</strong> debe estar asociada a una <strong>entidad puntual</strong> (ver objeto 0304p). 
+		Puede haber varias zonas asociadas al mismo punto. 
+		Esta asociación se realiza mediante el atributo <b>globalid</b> del puntual y el <b>guid_p</b> de la zona.
+		</p>
 	</div>
 </template>

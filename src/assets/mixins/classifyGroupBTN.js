@@ -1,54 +1,46 @@
 export const classifyGroupBTN = {
+    data(){
+        return {
+            itemsBTN: []
+        }
+    },
+
     methods: {
-        classifyGroupBTN(objetos){
-            let itemsBTN = [
-                {
-                    group: 'Transportes',
-                    icon: this.getGroupBtnIcon('01'),
+        createTheme(groupName, codigo){
+            let newGroup = {
+                    group: groupName,
+                    icon: this.getGroupBtnIcon(codigo),
                     values: []
-                },
-                {
-                    group: 'Edificios y construcciones',
-                    icon: this.getGroupBtnIcon('02'), 
-                    values: []
-                }, 
-                {
-                    group: 'Servicios e instalaciones',
-                    icon: this.getGroupBtnIcon('03'), 
-                    values: []
-                }, 
-                {
-                    group: 'Hidrografía',
-                    icon: this.getGroupBtnIcon('04'), 
-                    values: []
-                },
-                {
-                    group: 'Orografía y paisaje',
-                    icon: this.getGroupBtnIcon('05'), 
-                    values: []
-                },  
-                {
-                    group: 'Zonas administrativas',
-                    icon: this.getGroupBtnIcon('07'), 
-                    values: []
-                }, 
-            ];
-
-            
-            // INDICE OBJETOS
-            for (this.index in objetos){
-                let newObject = {
-                    code: this.btnObjects[this.index].codigo, 
-                    title: this.btnObjects[this.index].nom_corto, 
-                    active: {
-                        esquema: 'BTN',
-                        codigo: this.btnObjects[this.index].codigo,
-                    }
                 }
-                itemsBTN[itemsBTN.map((item)=>item.group).indexOf(objetos[this.index].nombre_tema)].values.push(newObject)               
-            }
+            return newGroup
+        },
 
-            return itemsBTN;
+        createObject(objeto){
+            let newObject = {
+                code: objeto.codigo, 
+                title: objeto.nom_corto, 
+                active: {
+                    esquema: 'BTN',
+                    codigo: objeto.codigo,
+                }
+            }
+            return newObject
+        },
+
+        classifyGroupBTN(objetos){
+            objetos.forEach((objeto)=>{
+                if(this.itemsBTN.map((item)=>item.group).includes(objeto.nombre_tema)){
+                    //SI TENEMOS EL TEMA INSERTAMOS OBJETO
+                    this.itemsBTN[this.itemsBTN.map((item)=>item.group).indexOf(objeto.nombre_tema)].values.push(this.createObject(objeto))
+                   
+                } else {
+                    //CREAMOS EL TEMA EN EL INDICE Y LUEGO INSERTAMOS
+                    this.itemsBTN.push(this.createTheme(objeto.nombre_tema, objeto.codigo))
+                    this.itemsBTN[this.itemsBTN.map((item)=>item.group).indexOf(objeto.nombre_tema)].values.push(this.createObject(objeto))
+                }
+            })
+
+            return this.itemsBTN
             }
         }
     }  

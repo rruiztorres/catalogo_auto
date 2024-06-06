@@ -6,6 +6,14 @@
 		Además, el <b>atributo sustancia</b> es obligatorio siempre que la instalación ocupe una <b>superficie mayor de 5Ha</b>. 
 		En caso contrario, se admite el valor -97 (desconocido).</p> 
 
+		<p>Las explotaciones mineras <b>no se eliminan</b> mientras: <ol>
+			<li>Queden marcas perceptibles en el terreno asociadas a la actividad extractiva.</li>
+			<li>Se trate de explotaciones históricas o con valor paisajístico.</li>
+		</ol>
+			Hay que tener <b>precaución en no eliminar antiguas explotaciones recuperadas paisajísticamente</b> y reconvertidas en espacios naturales, parques, etc. 
+			En estos casos coexisten la explotación minera y el objeto con el nuevo uso, un jardín, por ejemplo.
+		</p> 
+
 		<p>En el caso de las explotaciones subterráneas, la geometría puntual puede indicar tanto la <b>boca de entrada</b> a una galería subterránea 
 			como la <b>posición representativa</b> de toda la explotación o todo el conjunto de pozos y galerías.</p>
 
@@ -19,11 +27,15 @@
 		<p>No se han definido criterios de selección específicos para este objeto.</p>
 
 		<h2>Notas</h2>
-		<p>Puede haber <strong>una o varias zonas</strong> de Extracción de materiales <strong>asociadas</strong> a la entidad puntual (ver objeto 0301z). 
-			La asociación de las zonas al punto se recoge en el atributo <strong>“id_extract”</strong> (no obstante, en los trabajos de captura mediante el entorno de actualización, 
-			esta relación se materializa mediante una relationship class, empleando otros atributos internos).</p>
+		<p>Puede haber <b>una o varias zonas</b> de Extracción de materiales <b>asociadas</b> a la entidad puntual (ver objeto 0301z).
+		Esta asociación se realiza mediante el atributo <b>globalid</b> del puntual y el <b>guid_p</b> de la zona.
+	
 
-		<p>Aunque para el <strong>atributo sustancia</strong> hay una lista de valores, no es una lista cerrada. Además, 
-			si se realiza la extracción de más de un tipo de sustancia, se deben concatenar varios valores separados por comas. </p>
+		<p>Aunque para el <b>atributo sustancia</b> hay una lista de valores, no es una lista cerrada. Además, 
+		si se realiza la extracción de más de un tipo de sustancia, se deben concatenar varios valores separados por comas. </p>
+
+		<p>El modelo de datos <b>no contempla</b> si la instalación se encuentra <b>prestando servicio</b> en la actualidad o por el contrario está <b>cerrada de forma temporal o permanente</b>. 
+			Como norma general la entidad se mantiene mientras existan restos visibles, aunque ruinosos, de las instalaciones, especialmente cuando tienen carácter histórico.
+		</p>
 	</div>
 </template>

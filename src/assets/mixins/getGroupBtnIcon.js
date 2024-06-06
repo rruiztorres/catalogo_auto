@@ -25,6 +25,10 @@ export const getGroupBtnIcon = {
             else if (codigo.charAt(1) == 7){
                 return 'mdi-pine-tree'
             }
+            //ZONAS ADMIN
+            else if (codigo.charAt(1) == 9){
+                return 'mdi-group'
+            }
 
             else {
                 console.log("getGroupIcon error, no encontrado codigo ->", codigo)

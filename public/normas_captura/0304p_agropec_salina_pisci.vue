@@ -43,6 +43,8 @@
 		<p>No se han definido criterios de selección específicos para este objeto.</p>
 
 		<h2>Notas</h2>
-		<p>Puede haber <strong>una o varias zonas</strong> Agropecuarias, salinas y pisciculturas <strong>asociadas</strong> a la entidad puntual (ver objeto 0304z). La asociación de las zonas al punto se recoge en el atributo <strong>“id_agsapi”</strong> (no obstante, en los trabajos de captura mediante el entorno de actualización, esta relación se materializa mediante una relationship class, empleando otros atributos internos).</p>
+		<p>Puede haber <b>una o varias zonas</b> Agropecuarias, salinas y pisciculturas <b>asociadas</b> a la entidad puntual (ver objeto 0304z). 
+		Esta asociación se realiza mediante el atributo <b>globalid</b> del puntual y el <b>guid_p</b> de la zona.
+		</p>
 	</div>
 </template>

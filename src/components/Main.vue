@@ -128,7 +128,7 @@
                             </div>
                             <div v-else>
                                 {{attribute.definicion}}
-                                <div class="subTableContainer">
+                                <div class="subTableContainer" v-if="attribute.tipo_valor === 'lista_val'">
                                     <h4 class="valuesTitle">VALORES</h4>
                                     <v-simple-table class="subTable">
                                         <tbody>
@@ -428,6 +428,7 @@ export default {
                 axios
                 .get(this.apiRoute + `/api/v1/${object.esquema}/attributes`)
                 .then((data) => {
+                    console.log(data)
                     this.objeto = undefined;
                     this.atributosComunes = {
                         esquema: object.esquema,

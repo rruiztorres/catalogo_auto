@@ -139,6 +139,7 @@
             },
             
             initialize(){
+                this.items = []
                 this.checkActiveSchema()
             },
 
@@ -168,33 +169,36 @@
 
             //BDIG de momento es igual que BTN
             async getBDIGObjects(){
-                this.items = [];
-                axios
-                .get(this.apiRoute + '/api/v1/bdig/objects')
-                .then ((data) => {
-                    this.btnObjects = data.data.resultados;
-                    this.items = this.classifyGroupBTN(this.btnObjects);
-                })
+                if(this.items.length === 0){
+                    axios
+                    .get(this.apiRoute + '/api/v1/bdig/objects')
+                    .then ((data) => {
+                        this.btnObjects = data.data.resultados;
+                        this.items = this.classifyGroupBTN(this.btnObjects);
+                    })
+                }
             },
 
             async getBtnObjects(){
-                this.items = [];
-                axios
-                .get(this.apiRoute + '/api/v1/btn/objects')
-                .then ((data) => {
-                    this.btnObjects = data.data.resultados;
-                    this.items = this.classifyGroupBTN(this.btnObjects);
-                })
+                if(this.items.length === 0){
+                    axios
+                    .get(this.apiRoute + '/api/v1/btn/objects')
+                    .then ((data) => {
+                        this.btnObjects = data.data.resultados;
+                        this.items = this.classifyGroupBTN(this.btnObjects);
+                    })
+                }
             },
 
             async getRtObjects(){
-                this.items = [];
-                axios
-                .get(this.apiRoute + '/api/v1/rt/objects')
-                .then ((data) => {
-                    this.rtObjects = data.data.resultados;
-                    this.items = this.classifyGroupRT(this.rtObjects);
-                })
+                if(this.items.length === 0){
+                    axios
+                    .get(this.apiRoute + '/api/v1/rt/objects')
+                    .then ((data) => {
+                        this.rtObjects = data.data.resultados;
+                        this.items = this.classifyGroupRT(this.rtObjects);
+                    })
+                }
             },
 
             async getCommonAttributes(schema){

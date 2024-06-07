@@ -233,8 +233,6 @@
                         <OtrasConstruccionesS v-if="normActive.codigo === '0207s'"></OtrasConstruccionesS>
                         <ExtracMaterial v-if="normActive.codigo === '0301p'"></ExtracMaterial>
                         <ExtracMaterialZ v-if="normActive.codigo === '0301z'"></ExtracMaterialZ>
-                        <AgropecSalinaPisciP v-if="normActive.codigo === '0304p'"></AgropecSalinaPisciP>
-                        <AgropecSalinaPisciZ v-if="normActive.codigo === '0304z'"></AgropecSalinaPisciZ>
                         <EnergiaL v-if="normActive.codigo === '0307l'"></EnergiaL>
                         <EnergiaP v-if="normActive.codigo === '0307p'"></EnergiaP>
                         <EnergiaZ v-if="normActive.codigo === '0307z'"></EnergiaZ>
@@ -305,8 +303,6 @@ import OtrasConstruccionesP from "../../public/normas_captura/0207p_otras_constr
 import OtrasConstruccionesS from "../../public/normas_captura/0207s_otras_constr.vue";
 import ExtracMaterial from "../../public/normas_captura/0301p_extrac_material.vue";
 import ExtracMaterialZ from "../../public/normas_captura/0301z_extrac_material.vue";
-import AgropecSalinaPisciP from "../../public/normas_captura/0304p_agropec_salina_pisci.vue";
-import AgropecSalinaPisciZ from "../../public/normas_captura/0304z_agropec_salina_pisci.vue";
 import EnergiaL from "../../public/normas_captura/0307l_energia.vue";
 import EnergiaP from "../../public/normas_captura/0307p_energia.vue";
 import EnergiaZ from "../../public/normas_captura/0307z_energia.vue";
@@ -354,8 +350,6 @@ export default {
         OtrasConstruccionesS,
         ExtracMaterial,
         ExtracMaterialZ,
-        AgropecSalinaPisciP,
-        AgropecSalinaPisciZ,
         EnergiaL,
         EnergiaP,
         EnergiaZ,

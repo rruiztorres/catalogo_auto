@@ -28,6 +28,7 @@ export const classifyGroupBTN = {
         },
 
         classifyGroupBTN(objetos){
+            this.itemsBTN = []
             objetos.forEach((objeto)=>{
                 if(this.itemsBTN.map((item)=>item.group).includes(objeto.nombre_tema)){
                     //SI TENEMOS EL TEMA INSERTAMOS OBJETO
@@ -39,7 +40,6 @@ export const classifyGroupBTN = {
                     this.itemsBTN[this.itemsBTN.map((item)=>item.group).indexOf(objeto.nombre_tema)].values.push(this.createObject(objeto))
                 }
             })
-
             return this.itemsBTN
             }
         }

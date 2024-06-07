@@ -169,36 +169,31 @@
 
             //BDIG de momento es igual que BTN
             async getBDIGObjects(){
-                if(this.items.length === 0){
-                    axios
-                    .get(this.apiRoute + '/api/v1/bdig/objects')
-                    .then ((data) => {
-                        this.btnObjects = data.data.resultados;
-                        this.items = this.classifyGroupBTN(this.btnObjects);
-                    })
-                }
+                axios
+                .get(this.apiRoute + '/api/v1/bdig/objects')
+                .then ((data) => {
+                    this.btnObjects = data.data.resultados;
+                    this.items = this.classifyGroupBTN(this.btnObjects);
+                })
             },
 
             async getBtnObjects(){
-                if(this.items.length === 0){
-                    axios
-                    .get(this.apiRoute + '/api/v1/btn/objects')
-                    .then ((data) => {
-                        this.btnObjects = data.data.resultados;
-                        this.items = this.classifyGroupBTN(this.btnObjects);
-                    })
-                }
+                axios
+                .get(this.apiRoute + '/api/v1/btn/objects')
+                .then ((data) => {
+                    this.btnObjects = data.data.resultados;
+                    this.items = this.classifyGroupBTN(this.btnObjects);
+                })
+                
             },
 
             async getRtObjects(){
-                if(this.items.length === 0){
-                    axios
-                    .get(this.apiRoute + '/api/v1/rt/objects')
-                    .then ((data) => {
-                        this.rtObjects = data.data.resultados;
-                        this.items = this.classifyGroupRT(this.rtObjects);
-                    })
-                }
+                axios
+                .get(this.apiRoute + '/api/v1/rt/objects')
+                .then ((data) => {
+                    this.rtObjects = data.data.resultados;
+                    this.items = this.classifyGroupRT(this.rtObjects);
+                })
             },
 
             async getCommonAttributes(schema){

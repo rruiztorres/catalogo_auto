@@ -253,7 +253,6 @@
                         <LaminaAgua v-if="normActive.codigo === '0407s'"></LaminaAgua>
                         <Embalse v-if="normActive.codigo === '0410s'"></Embalse>
                         <Presa v-if="normActive.codigo === '0413l'"></Presa>
-                        <Glaciar v-if="normActive.codigo === '0419s'"></Glaciar>
                         <AguasMarinas v-if="normActive.codigo === '0422s'"></AguasMarinas>
                         <Isla v-if="normActive.codigo === '0425s'"></Isla>
                         <Costa v-if="normActive.codigo === '0428l'"></Costa>
@@ -324,7 +323,6 @@ import LaminaAgua from "../../public/normas_captura/0407s_lamina_agua.vue";
 import Embalse from "../../public/normas_captura/0410s_embalse.vue";
 import Presa from "../../public/normas_captura/0413l_presa.vue";
 import PuntoHidro from "../../public/normas_captura/0416p_punto_hidro.vue";
-import Glaciar from "../../public/normas_captura/0419s_glaciar.vue";
 import AguasMarinas from "../../public/normas_captura/0422s_aguas_marinas.vue";
 import Isla from "../../public/normas_captura/0425s_isla.vue";
 import Costa from "../../public/normas_captura/0428l_costa.vue";
@@ -371,7 +369,6 @@ export default {
         Embalse,
         Presa,
         PuntoHidro,
-        Glaciar,
         AguasMarinas,
         Isla,
         Costa,

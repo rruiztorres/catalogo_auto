@@ -263,7 +263,6 @@
                         <Lugar v-if="normActive.codigo === '0510l'"></Lugar>
                         <LugarP v-if="normActive.codigo === '0510p'"></LugarP>
                         <ElementoCostero v-if="normActive.codigo === '0513p'"></ElementoCostero>
-                        <ConjElm v-if="normActive.codigo === '0516z'"></ConjElm>
                         <EspNatProt v-if="normActive.codigo ==='0701z'"></EspNatProt>
                     </div>
                     <!-- NORMAS RT -->
@@ -332,7 +331,6 @@ import CadenaMont from "../../public/normas_captura/0507l_cadena_mont.vue";
 import Lugar from "../../public/normas_captura/0510l_lugar.vue";
 import LugarP from "../../public/normas_captura/0510p_lugar.vue";
 import ElementoCostero from "../../public/normas_captura/0513p_elemento_costero.vue";
-import ConjElem from "../../public/normas_captura/0516z_conjunto_elementos.vue";
 import EspNatProt from "../../public/normas_captura/0701z_esp_nat_protegido.vue";
 
 export default {
@@ -378,7 +376,6 @@ export default {
         Lugar,
         LugarP,
         ElementoCostero,
-        ConjElem,
         EspNatProt,
     },
     created(){

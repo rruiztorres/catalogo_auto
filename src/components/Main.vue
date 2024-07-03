@@ -128,7 +128,7 @@
                             </div>
                             <div v-else>
                                 {{attribute.definicion}}
-                                <div class="subTableContainer" v-if="attribute.tipo_valor === 'lista_val'">
+                                <div class="subTableContainer" v-if="attribute.tipo_valor === 'lista_val' || attribute.tipo_valor === 'lista_val_tabla'">
                                     <h4 class="valuesTitle">VALORES</h4>
                                     <v-simple-table class="subTable">
                                         <tbody>
@@ -200,7 +200,7 @@
                                     {{atributo.definicion}}
 
                                     <!-- SI ES UN CODELIST MOSTRAMOS TABLA DE VALORES -->
-                                    <div  class="subTableContainer" v-if="atributo.tipo_valor === 'lista_val'">
+                                    <div  class="subTableContainer" v-if="(atributo.tipo_valor === 'lista_val' || atributo.tipo_valor === 'lista_val_tabla')">
                                         <h4 class="valuesTitle">VALORES</h4>
                                         <v-simple-table class="subTable">
                                             <tbody>

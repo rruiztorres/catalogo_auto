@@ -73,12 +73,16 @@
 		<p>Puede haber <b>una o varias zonas</b> de Extracción de materiales <b>asociadas</b> a la entidad puntual (ver objeto 0301z).
 		Esta asociación se realiza mediante el atributo <b>globalid</b> del puntual y el <b>guid_p</b> de la zona.
 	
-
 		<p>Aunque para el <b>atributo sustancia</b> hay una lista de valores, no es una lista cerrada. Además, 
 		si se realiza la extracción de más de un tipo de sustancia, se deben concatenar varios valores separados por comas. </p>
 
-		<p>El modelo de datos <b>no contempla</b> si la instalación se encuentra <b>prestando servicio</b> en la actualidad o por el contrario está <b>cerrada de forma temporal o permanente</b>. 
-			Como norma general la entidad se mantiene mientras existan restos visibles, aunque ruinosos, de las instalaciones, especialmente cuando tienen carácter histórico.
+		<p>El modelo de datos <b>no contempla</b> si la instalación se encuentra <b>prestando servicio</b> en la actualidad 
+		o por el contrario está <b>cerrada de forma temporal o permanente</b>. 
+		Como norma general la entidad se mantiene mientras existan restos visibles, 
+		aunque ruinosos, de las instalaciones, especialmente cuando tienen carácter histórico.</p>
+
+		<p>En el caso de las explotaciones subterráneas, la geometría puntual puede indicar tanto la boca de entrada a una galería 
+		subterránea como la posición representativa de toda la explotación o todo el conjunto de pozos y galerías.
 		</p>
 	</div>
 </template>

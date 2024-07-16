@@ -24,7 +24,50 @@
 		</div>
 
 		<h2>Criterios de selección</h2>
-		<p>No se han definido criterios de selección específicos para este objeto.</p>
+		<h3>Salinas</h3>
+		<p>Las salinas de <b>evaporación</b> son frecuentes en <b>zonas costeras</b> donde se aprovecha el agua salina del mar, pero también hay instalaciones 
+			en zonas interiores en las que se utilizan manantiales de agua salada debido a que el agua atraviesa depósitos de sal subterráneos.</p>
+		<p><b>No deben confundirse las salinas con las minas de sal</b>. En estas últimas la sal se obtiene directamente mediante trabajos mineros sobre la 
+			roca de sal o halita. Las minas de sal se capturan en las capas 0301p y 0301z (Extracción de materiales)</p>
+		<p>En general cuando existan estanques de vaporación o eras, <b>se considerará la instalación como salina (0204s / 0310p / 0310z)</b>. 
+			Si por el contrario no existen se considerará explotación minera</p>
+		
+		<div class="picture">
+			<i>
+				<img src="../img/0204s_construccion_de_almacenaje_3.png">
+				<p>Salinas de evaporación no costeras en Añana, Euskadi <b>(capa 0204p)</b></p>
+			</i>
+		</div>
+		<div class="picture">
+			<i>
+				<img src="../img/0204s_construccion_de_almacenaje_5.png">
+				<p>Mina de sal de Cardona <b>(0301p – 0301z Extracción de materiales)</b></p>
+			</i>
+		</div>
+		<div class="picture">
+			<i>
+				<img src="../img/0204s_construccion_de_almacenaje_6.png">
+				<p>Mina de sal de Cardona <b>(0301p – 0301z Extracción de materiales)</b> – Vista ortofoto</p>
+			</i>
+		</div>
+		<div class="picture">
+			<i>
+				<img src="../img/0204s_construccion_de_almacenaje_4.png">
+				<p>Salinas costeras de evaporación en Santa Pola, Alicante <b>(capa 0304p)</b></p>
+			</i>
+		</div>
+		<div class="picture">
+			<i>
+				<img src="../img/0204s_construccion_de_almacenaje_8.png">
+				<p>Ejemplo de captura para explotación minera de sal en Cardona (Barcelona)</p>
+			</i>
+		</div>
+		<div class="picture">
+			<i>
+				<img src="../img/0204s_construccion_de_almacenaje_7.png">
+				<p>Ejemplo de captura para una Salina costera de evaporación en Santa Pola, Alicante</p>
+			</i>
+		</div>
 
 		<h2>Notas</h2>
 		<p>Puede haber <b>una o varias zonas</b> de Extracción de materiales <b>asociadas</b> a la entidad puntual (ver objeto 0301z).

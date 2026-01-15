@@ -1,11 +1,14 @@
 .DS_Store
 node_modules
 /dist
+/public/normas_captura
+servidor.py
+
 
 
 # local env files
-.env.local
-.env.*.local
+.env
+.env.production
 
 # Log files
 npm-debug.log*
@@ -23,3 +26,5 @@ pnpm-debug.log*
 *.sw?
 src/.env
 src/.env.production
+.env
+.env.production

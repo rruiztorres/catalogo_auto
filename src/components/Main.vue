@@ -219,56 +219,11 @@
                         </tbody>
                     </v-simple-table>
                 </v-card-text>
+                
 
+                <!-- NORMAS DE CAPTURA -->
                 <v-card-text>
-                    <!-- NORMAS BTN -->
-                    <div v-if="normActive.esquema === 'BTN' || normActive.esquema === 'BDIG'">
-                        <Itinerario v-if="normActive.codigo === '0194l'"></Itinerario>
-                        <ViaPecuaria v-if="normActive.codigo === '0197l'"></ViaPecuaria>
-                        <Edificio v-if="normActive.codigo === '0201s'"></Edificio>
-                        <ConstAlmacenaje v-if="normActive.codigo === '0204s'"></ConstAlmacenaje>
-                        <ConjElem v-if="normActive.codigo === '0516z'"></ConjElem>
-                        <OtrasConstruccionesL v-if="normActive.codigo === '0207l'"></OtrasConstruccionesL>
-                        <OtrasConstruccionesP v-if="normActive.codigo === '0207p'"></OtrasConstruccionesP>
-                        <OtrasConstruccionesS v-if="normActive.codigo === '0207s'"></OtrasConstruccionesS>
-                        <ExtracMaterial v-if="normActive.codigo === '0301p'"></ExtracMaterial>
-                        <ExtracMaterialZ v-if="normActive.codigo === '0301z'"></ExtracMaterialZ>
-                        <EnergiaL v-if="normActive.codigo === '0307l'"></EnergiaL>
-                        <EnergiaP v-if="normActive.codigo === '0307p'"></EnergiaP>
-                        <EnergiaZ v-if="normActive.codigo === '0307z'"></EnergiaZ>
-                        <IndustriaServComP v-if="normActive.codigo === '0310p'"></IndustriaServComP>
-                        <IndustriaServComZ v-if="normActive.codigo === '0310z'"></IndustriaServComZ>
-                        <AdmonEquipSocialP v-if="normActive.codigo === '0313p'"></AdmonEquipSocialP>
-                        <AdmonEquipSocialZ v-if="normActive.codigo === '0313z'"></AdmonEquipSocialZ>
-                        <CulturaOcioP v-if="normActive.codigo === '0316p'"></CulturaOcioP>
-                        <CulturaOcioZ v-if="normActive.codigo === '0316z'"></CulturaOcioZ>
-                        <TratAguaResiduosP v-if="normActive.codigo === '0319p'"></TratAguaResiduosP>
-                        <TratAguaResiduosZ v-if="normActive.codigo === '0319z'"></TratAguaResiduosZ>
-                        <OtrosServInstP v-if="normActive.codigo === '0322p'"></OtrosServInstP>
-                        <OtrosServInstZ v-if="normActive.codigo === '0322z'"></OtrosServInstZ>
-                        <CursoNaturalL v-if="normActive.codigo === '0401l'"></CursoNaturalL>
-                        <CursoNaturalS v-if="normActive.codigo === '0401s'"></CursoNaturalS>
-                        <CursoArtificialL v-if="normActive.codigo === '0404l'"></CursoArtificialL>
-                        <CursoArtificialS v-if="normActive.codigo === '0404s'"></CursoArtificialS>
-                        <LaminaAgua v-if="normActive.codigo === '0407s'"></LaminaAgua>
-                        <Embalse v-if="normActive.codigo === '0410s'"></Embalse>
-                        <Presa v-if="normActive.codigo === '0413l'"></Presa>
-                        <AguasMarinas v-if="normActive.codigo === '0422s'"></AguasMarinas>
-                        <Isla v-if="normActive.codigo === '0425s'"></Isla>
-                        <Costa v-if="normActive.codigo === '0428l'"></Costa>
-                        <CurvaNivel v-if="normActive.codigo === '0501l'"></CurvaNivel>
-                        <PuntoCota v-if="normActive.codigo === '0504p'"></PuntoCota>
-                        <PuntoHidro v-if="normActive.codigo === '0416p'"></PuntoHidro>
-                        <CadenaMont v-if="normActive.codigo === '0507l'"></CadenaMont>
-                        <Lugar v-if="normActive.codigo === '0510l'"></Lugar>
-                        <LugarP v-if="normActive.codigo === '0510p'"></LugarP>
-                        <ElementoCostero v-if="normActive.codigo === '0513p'"></ElementoCostero>
-                        <EspNatProt v-if="normActive.codigo ==='0701z'"></EspNatProt>
-                    </div>
-                    <!-- NORMAS RT -->
-                    <div v-if="normActive.esquema === 'RT'">
-                        <h2>No hay normas disponibles por el momento</h2>
-                    </div>
+                    <div v-html="normasCaptura"></div>
                 </v-card-text>
         </v-card>
 
@@ -292,92 +247,10 @@
 <script>
 import axios from 'axios';
 
-import Itinerario from "../../public/normas_captura/0194l_itinerario.vue";
-import ViaPecuaria from "../../public/normas_captura/0197l_via_pecuaria.vue";
-import Edificio from "../../public/normas_captura/0201s_edificio.vue";
-import ConstAlmacenaje from "../../public/normas_captura/0204s_constr_almacenaje.vue";
-import OtrasConstruccionesL from "../../public/normas_captura/0207l_otras_constr.vue";
-import OtrasConstruccionesP from "../../public/normas_captura/0207p_otras_constr.vue";
-import OtrasConstruccionesS from "../../public/normas_captura/0207s_otras_constr.vue";
-import ExtracMaterial from "../../public/normas_captura/0301p_extrac_material.vue";
-import ExtracMaterialZ from "../../public/normas_captura/0301z_extrac_material.vue";
-import EnergiaL from "../../public/normas_captura/0307l_energia.vue";
-import EnergiaP from "../../public/normas_captura/0307p_energia.vue";
-import EnergiaZ from "../../public/normas_captura/0307z_energia.vue";
-import IndustriaServComP from "../../public/normas_captura/0310p_industria_serv_com.vue";
-import IndustriaServComZ from "../../public/normas_captura/0310z_industria_serv_com.vue";
-import AdmonEquipSocialP from "../../public/normas_captura/0313p_admon_equip_social.vue";
-import AdmonEquipSocialZ from "../../public/normas_captura/0313z_admon_equip_social.vue";
-import CulturaOcioP from "../../public/normas_captura/0316p_cultura_ocio.vue";
-import CulturaOcioZ from "../../public/normas_captura/0316z_cultura_ocio.vue";
-import TratAguaResiduosP from "../../public/normas_captura/0319p_trat_agua_residuos.vue";
-import TratAguaResiduosZ from "../../public/normas_captura/0319z_trat_agua_residuos.vue";
-import OtrosServInstP from "../../public/normas_captura/0322p_otros_serv_inst.vue";
-import OtrosServInstZ from "../../public/normas_captura/0322z_otros_serv_inst.vue";
-import CursoNaturalL from "../../public/normas_captura/0401l_curso_natural.vue";
-import CursoNaturalS from "../../public/normas_captura/0401s_curso_natural.vue";
-import CursoArtificialL from "../../public/normas_captura/0404l_curso_artificial.vue";
-import CursoArtificialS from "../../public/normas_captura/0404s_curso_artificial.vue";
-import LaminaAgua from "../../public/normas_captura/0407s_lamina_agua.vue";
-import Embalse from "../../public/normas_captura/0410s_embalse.vue";
-import Presa from "../../public/normas_captura/0413l_presa.vue";
-import PuntoHidro from "../../public/normas_captura/0416p_punto_hidro.vue";
-import AguasMarinas from "../../public/normas_captura/0422s_aguas_marinas.vue";
-import Isla from "../../public/normas_captura/0425s_isla.vue";
-import Costa from "../../public/normas_captura/0428l_costa.vue";
-import CurvaNivel from "../../public/normas_captura/0501l_curva_nivel.vue";
-import PuntoCota from "../../public/normas_captura/0504p_punto_cota.vue";
-import CadenaMont from "../../public/normas_captura/0507l_cadena_mont.vue";
-import Lugar from "../../public/normas_captura/0510l_lugar.vue";
-import LugarP from "../../public/normas_captura/0510p_lugar.vue";
-import ElementoCostero from "../../public/normas_captura/0513p_elemento_costero.vue";
-import EspNatProt from "../../public/normas_captura/0701z_esp_nat_protegido.vue";
-
 export default {
     name: 'main-catalogo',
     props: ['active', 'searchResults', 'schemaActive'],
-    components: {
-        Itinerario, 
-        ViaPecuaria, 
-        Edificio,
-        ConstAlmacenaje,
-        OtrasConstruccionesL,
-        OtrasConstruccionesP,
-        OtrasConstruccionesS,
-        ExtracMaterial,
-        ExtracMaterialZ,
-        EnergiaL,
-        EnergiaP,
-        EnergiaZ,
-        IndustriaServComP,
-        IndustriaServComZ,
-        AdmonEquipSocialP,
-        AdmonEquipSocialZ,
-        CulturaOcioP,
-        CulturaOcioZ,
-        TratAguaResiduosP,
-        TratAguaResiduosZ,
-        OtrosServInstP,
-        OtrosServInstZ,
-        CursoNaturalL,
-        CursoNaturalS,
-        CursoArtificialL,
-        CursoArtificialS,
-        LaminaAgua,
-        Embalse,
-        Presa,
-        PuntoHidro,
-        AguasMarinas,
-        Isla,
-        Costa,
-        CurvaNivel,
-        PuntoCota,
-        CadenaMont,
-        Lugar,
-        LugarP,
-        ElementoCostero,
-        EspNatProt,
-    },
+    
     created(){
         this.initialize(this.active);
     },
@@ -413,10 +286,9 @@ export default {
             if(this.normActive === undefined ){this.normActive = this.active}
             if(object.active === 'commonAttributes'){
                 //SE ACTIVAN LOS ATRIBUTOS COMUNES
-                axios
+                await axios
                 .get(this.apiRoute + `/api/v1/${object.esquema}/attributes`)
                 .then((data) => {
-                    console.log(data)
                     this.objeto = undefined;
                     this.atributosComunes = {
                         esquema: object.esquema,
@@ -425,13 +297,22 @@ export default {
                 })
             } else {
                 //SE ACTIVAN LOS OBJETOS
-                axios
+                await axios
                 .get(this.apiRoute + `/api/v1/${object.esquema}/diccionario/` + object.codigo)
                 .then((data) => {
                     this.objeto = data.data.objeto;
                     this.atributosComunes = undefined;
                 })
             }
+
+            //OBTENEMOS NORMAS DE CAPTURA
+            const response = await fetch(`${this.normasRoute}${this.objeto.codigo + "_" + this.objeto.nom_corto}.html`)
+            if(response.status === 200){
+                this.normasCaptura = await response.text();
+            } else {
+                this.normasCaptura = '<h1>No hay contenido</h1>'
+            }
+
         },
 
         viewResults(item){
@@ -452,6 +333,8 @@ export default {
     data(){
         return{
             apiRoute: process.env.VUE_APP_API,
+            normasRoute: process.env.VUE_APP_NORMAS,
+            normasCaptura: undefined,
             objectCode: undefined,
             objeto: undefined,
             showOptionPanel: false,

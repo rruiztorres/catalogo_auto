@@ -483,13 +483,6 @@ export default {
         box-shadow: 2px 2px 3px 0px lightgrey;
     }
 
-    .logoImg{
-        position: absolute;
-        top: 0.5rem;
-        right: 1rem;
-        background-color:  #343a40 ;
-        height: 2rem;
-    }
 
  
 

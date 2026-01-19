@@ -1,6 +1,6 @@
 <template> 
     <div id="mainWrapper"> 
-        <img class="imgHead" src="@/assets/img/IGN-Header-Title.png">
+        <img class="logoImg" src="@/assets/img/logo_web_IGN_CNIG.svg">
 
         <h2 class="mainTitle">CATÁLOGO OBJETOS</h2>
 
@@ -270,13 +270,14 @@
 
     .listWrapper::-webkit-scrollbar { width: 0; height: 0; }
 
-    .imgHead {
-        width: 100%;
-        margin: 1.5rem 0rem;
-    }
 
     .listChild{
         margin-left: 0.5rem;
+    }
+
+    .logoImg {
+        height: 3rem;
+        margin:0.5rem 0rem 2rem 0rem;
     }
 
 </style>   

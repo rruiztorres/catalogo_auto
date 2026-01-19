@@ -1,6 +1,6 @@
 <template> 
     <div id="mainWrapper"> 
-        <img class="logoImg" src="@/assets/img/logo_web_IGN_CNIG.svg">
+        <img class="imgHead" src="@/assets/img/IGN-Header-Title.png">
 
         <h2 class="mainTitle">CATÁLOGO OBJETOS</h2>
 
@@ -14,7 +14,7 @@
             <v-btn
                 v-for="schema in schemas"
                 :key="schema"
-                width="33.33%"
+                width="50%"
             >{{schema}}
             </v-btn>
         </v-btn-toggle>
@@ -35,9 +35,10 @@
 
 
         <!-- MENU CARGA DINAMICA -->
-        <v-list dark>
+        <v-list dark
+        class="listWrapper"
+>
             <v-list-item
-                active-class="btnActive"
                 dark
                 @click="activateItem(commonAttributes)"
             >
@@ -56,17 +57,20 @@
                         <v-list-item-title>{{item.group}}</v-list-item-title>
                     </v-list-item-content>
                 </template>
-                    <v-list-item
-                        v-for="element in item.values"
-                        :key="element.code"
-                        dense
-                        active-class="btnActive"
-                        dark class="listChild"
-                        @click="activateItem(element.active)"
-                    >   
-                        <v-list-item-icon><v-icon>mdi-square-medium</v-icon></v-list-item-icon>
-                        <v-list-item-title>{{element.code}} {{element.title}}</v-list-item-title>
-                    </v-list-item>
+                    <v-list-item-group
+                        active-class="menuActive"
+                    >
+                        <v-list-item
+                            v-for="element in item.values"
+                            :key="element.code"
+                            dense
+                            dark class="listChild"
+                            @click="activateItem(element.active)"
+                        >   
+                            <v-list-item-icon><v-icon>mdi-square-medium</v-icon></v-list-item-icon>
+                            <v-list-item-title>{{element.code}} {{element.title}}</v-list-item-title>
+                        </v-list-item>
+                    </v-list-item-group>
             </v-list-group>
         </v-list>
     </div>
@@ -87,10 +91,11 @@
         data(){
             return{
                 apiRoute: process.env.VUE_APP_API,
-                schemas: ['BDIG', 'BTN', 'RT'],
+                schemas: ['BTN', 'RT'],
                 activeSchema: 1,
                 items: [],
                 searchTerm: undefined,
+                active: undefined,
             }
         },
 
@@ -169,7 +174,7 @@
 
             //BDIG de momento es igual que BTN
             async getBDIGObjects(){
-                axios
+                await axios
                 .get(this.apiRoute + '/api/v1/bdig/objects')
                 .then ((data) => {
                     this.btnObjects = data.data.resultados;
@@ -178,7 +183,7 @@
             },
 
             async getBtnObjects(){
-                axios
+                await axios
                 .get(this.apiRoute + '/api/v1/btn/objects')
                 .then ((data) => {
                     this.btnObjects = data.data.resultados;
@@ -188,7 +193,7 @@
             },
 
             async getRtObjects(){
-                axios
+                await axios
                 .get(this.apiRoute + '/api/v1/rt/objects')
                 .then ((data) => {
                     this.rtObjects = data.data.resultados;
@@ -196,7 +201,7 @@
                 })
             },
 
-            async getCommonAttributes(schema){
+            getCommonAttributes(schema){
                 this.commonAttributes = {
                     esquema: schema,
                     active: 'commonAttributes',
@@ -215,15 +220,11 @@
     }
 
     .searchBar{
-       margin: 1reM !important;
-    }
-
-    .menuSelected{
-       background-color: red !important;
+       margin: 1rem 1rem -1rem 1rem!important;
     }
 
     .schemaSelection {
-        display: block; 
+        width: 90%; 
         margin: 0rem 1rem 0rem 1rem;
     }
 
@@ -232,8 +233,13 @@
         color: white !important;
     }
 
+    .menuActive {
+        background-color: #1d262e !important;
+        color: white !important;
+    }
+
     .mainTitle{
-        margin-bottom: 1rem;
+        margin-top: 0rem;
         color: #3c8dbc;
         font-weight: 400;
         text-align: center;
@@ -251,12 +257,22 @@
         font-family: 'Red Hat Display';
         font-weight: 400;
         color:white;
+        max-height: 100dvh;
+        overflow: hidden;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
     }
 
-    .logoImg{
-        margin: 2.25rem 0rem 2rem 0rem;
+    .listWrapper {
+        overflow-y: auto;
+    }
+
+    .listWrapper::-webkit-scrollbar { width: 0; height: 0; }
+
+    .imgHead {
         width: 100%;
-        padding: 0.8rem;
+        margin: 1.5rem 0rem;
     }
 
     .listChild{

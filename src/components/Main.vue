@@ -9,7 +9,7 @@
                     <v-btn icon large @click="searchTerms = undefined"><v-icon>mdi-close</v-icon></v-btn>
                 </v-card-title>
 
-                <v-card-text>
+                <v-card-text class="resultsPanel">
                     <!-- OBJETOS -->
                         <h2>Objetos</h2>
                         <v-data-table
@@ -106,7 +106,6 @@
             </v-card>
         </v-overlay>
 
-
         <!-- ATRIBUTOS COMUNES -->
         <v-card class="mainContainer" v-if="atributosComunes">
            <h2 class="cardTitle">Atributos Comunes {{atributosComunes.esquema}}</h2>
@@ -151,19 +150,19 @@
         </v-card>
 
         <!-- VENTANA PRINCIPAL -->
-        <v-card class="mainContainer" v-if="objeto">
+        <v-card class="mainContainer" id="content" v-if="objeto">
                 <v-card-title>
                     <h2 class="cardTitle">{{objeto.codigo + " " + objeto.nombre}}</h2>                 
                     <v-spacer></v-spacer>
                     <v-checkbox
-                        v-if="schemaActive === 'BDIG'"
+                        v-if="['BDIG','BTN'].includes(schemaActive)"
                         class="autoCheck"
                         disabled
                         :input-value="objeto.actu_bdig"
                         label="Se actualiza en entorno BDIG"
                     ></v-checkbox>
                     <v-checkbox
-                        v-if="schemaActive === 'BDIG'"
+                        v-if="['BDIG','BTN'].includes(schemaActive)"
                         class="autoCheck"
                         disabled
                         :input-value="objeto.vis_bdig"
@@ -226,20 +225,6 @@
                     <div v-html="normasCaptura"></div>
                 </v-card-text>
         </v-card>
-
-
-        <!-- OPCIONES -->
-        <v-btn 
-        color="blue" 
-        dark 
-        id="options"
-        large
-        fab
-        elevation="5"
-        @click="print"
-        ><v-icon>mdi-printer</v-icon>
-        </v-btn>
-
         
     </div>
 </template>
@@ -281,6 +266,12 @@ export default {
     },
 
     methods:{
+        
+        scrollContainerToTop(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollTo({ top: 0, behavior: 'smooth' });
+        },
+
         async initialize(object){
             //EVITA NORMAS DE CAPTURA VACIAS
             if(this.normActive === undefined ){this.normActive = this.active}
@@ -302,6 +293,7 @@ export default {
                 .then((data) => {
                     this.objeto = data.data.objeto;
                     this.atributosComunes = undefined;
+                    this.scrollContainerToTop("content")
                 })
             }
 
@@ -372,6 +364,17 @@ export default {
 </script>
 
 <style>
+    
+    /*Oculta barra scroll en ventana principal */
+    html, body, #app {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;              
+    box-sizing: border-box;
+    }
+    *, *::before, *::after { box-sizing: inherit; }
+
+
     h2, h3 {
         font-weight: 400;
         color: #3c8dbc;
@@ -387,15 +390,15 @@ export default {
         float: right;
         top: 8.4rem;
         right: 1rem;
+        
     }
 
     .mainContainer{
-        margin: 0.5rem 1rem 1rem 1rem;
+        margin: 0.5rem 0.5rem 1rem 0.5rem;
         background-color: white;
         padding: 1rem;
-        max-height: 83vh;
-        overflow-y: scroll;
-        width: 92%;
+        height: 92vh;
+        overflow-y: scroll !important;   
     }
 
     .cardTitle {
@@ -416,7 +419,7 @@ export default {
         border: 1px solid lightgray;
         border-right: 0px !important;
         border-radius: 4px;
-        box-shadow: 0px 1px 3px 1px lightgray
+        box-shadow: 0px 1px 3px 1px lightgray;
     }
 
     .attTable {
@@ -425,6 +428,7 @@ export default {
 
     .resultTable{
         background-color: #e9f1f7 !important;
+        overflow: hidden;
     }
 
     .atribCol {
@@ -454,11 +458,13 @@ export default {
     }
 
     .searchWindowResults{
-        width: 55rem;
-        max-width: 95vw;
-        max-height: 80vh;
-        padding: 1rem !important;
-        overflow-y: scroll;
+        width: 65vw;
+        max-height: 90vh;
+    }
+
+    .resultsPanel{
+        max-height: 68vh;
+        overflow-y: auto;
     }
 
     .commonAttHeader{
@@ -470,12 +476,19 @@ export default {
         width: 100%;
         max-width: 40rem;
         margin-right: 1rem;
-        
     }
 
     .picture img {
         width: 100%;
         box-shadow: 2px 2px 3px 0px lightgrey;
+    }
+
+    .logoImg{
+        position: absolute;
+        top: 0.5rem;
+        right: 1rem;
+        background-color:  #343a40 ;
+        height: 2rem;
     }
 
  

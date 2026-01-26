@@ -204,9 +204,15 @@
                                         <v-simple-table class="subTable">
                                             <tbody>
                                                     <tr v-for="valor in atributo.values" :key="valor.id">
-                                                        <td><text-highlight :queries="queries">{{valor.codigo_val}}</text-highlight></td>
-                                                        <td><text-highlight :queries="queries">{{valor.valor}}</text-highlight></td>
-                                                        <td><text-highlight :queries="queries">{{valor.definicion}}</text-highlight></td>
+                                                        <!-- SI ES UN ELEMENTO TRANSFERIDO / VALOR NO TRANSFERIDO -->
+                                                        <td v-if="valor.actu_bdig"><text-highlight :queries="queries">{{valor.codigo_val}}</text-highlight></td>
+                                                        <td v-else><span style="color:#909396"><text-highlight :queries="queries">{{valor.codigo_val}}</text-highlight></span><br/><small style="color:red;">No transferido</small></td>
+                                                        
+                                                        <td v-if="valor.actu_bdig"><text-highlight :queries="queries">{{valor.valor}}</text-highlight></td>
+                                                        <td v-else><span style="color:#909396"><text-highlight :queries="queries">{{valor.valor}}</text-highlight></span><br/><small style="color:red;">No transferido</small></td>
+
+                                                        <td v-if="valor.actu_bdig"><text-highlight :queries="queries">{{valor.definicion}}</text-highlight></td>
+                                                        <td v-else><span style="color:#909396"><text-highlight :queries="queries">{{valor.definicion}}</text-highlight></span><br/><small style="color:red;">No transferido</small></td>
                                                     </tr>
                                             </tbody>
                                         </v-simple-table>
@@ -292,13 +298,14 @@ export default {
                 .get(this.apiRoute + `/api/v1/${object.esquema}/diccionario/` + object.codigo)
                 .then((data) => {
                     this.objeto = data.data.objeto;
+                    console.log(this.objeto)
                     this.atributosComunes = undefined;
                     this.scrollContainerToTop("content")
                 })
             }
 
             //OBTENEMOS NORMAS DE CAPTURA
-            const response = await fetch(`${this.normasRoute}${this.objeto.codigo + "_" + this.objeto.nom_corto}.html`)
+            const response = await fetch(`${this.normasRoute}${this.objeto.codigo + "_" + this.objeto.nom_corto}.html`, { cache: 'reload' })
             if(response.status === 200){
                 this.normasCaptura = await response.text();
             } else {

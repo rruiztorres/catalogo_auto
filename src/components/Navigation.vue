@@ -92,7 +92,7 @@
             return{
                 apiRoute: process.env.VUE_APP_API,
                 schemas: ['BTN', 'RT'],
-                activeSchema: 1,
+                activeSchema: 0,
                 items: [],
                 searchTerm: undefined,
                 active: undefined,

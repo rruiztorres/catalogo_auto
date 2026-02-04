@@ -1,6 +1,6 @@
 <template> 
     <div id="mainWrapper"> 
-        <img class="logoImg" src="@/assets/img/logo_web_IGN_CNIG.svg">
+        <a href="https://www.transportes.gob.es/" target="blank"><img class="logoImg" src="@/assets/img/logo_web_IGN_CNIG.svg"></a>
 
         <h2 class="mainTitle">CATÁLOGO OBJETOS</h2>
 
@@ -104,24 +104,18 @@
                 this.checkActiveSchema()
             },
 
-            searchTerm(){
+            async searchTerm(){
                 if(this.searchTerm !== undefined){
                     if(this.searchTerm !== ''){
-                        //BUSQUEDA DEPENDE DEL ESQUEMA ACTIVO (btn, bdig, rt)
-                        if(this.activeSchema === 0){
-                            axios
-                            .get(this.apiRoute + '/api/v1/bdig/search/' + this.searchTerm)
-                            .then((data) => {
-                            this.$emit("searchResults", {termino: this.searchTerm, resultados: data.data})
-                            })  
-                        } else if (this.activeSchema === 1){
-                            axios
+                        //BUSQUEDA DEPENDE DEL ESQUEMA ACTIVO (btn, rt)
+                        if (this.activeSchema === 0){
+                            await axios
                             .get(this.apiRoute + '/api/v1/btn/search/' + this.searchTerm)
                             .then((data) => {
                             this.$emit("searchResults", {termino: this.searchTerm, resultados: data.data})
                             })  
-                        } else if (this.activeSchema === 2){
-                            axios
+                        } else if (this.activeSchema === 1){
+                            await axios
                             .get(this.apiRoute + '/api/v1/rt/search/' + this.searchTerm)
                             .then((data) => {
                             this.$emit("searchResults", {termino: this.searchTerm, resultados: data.data})
@@ -149,14 +143,7 @@
             },
 
             checkActiveSchema(){
-                if(this.schemas[this.activeSchema] === 'BDIG'){
-                    this.getBDIGObjects();
-                    this.getCommonAttributes(this.schemas[this.activeSchema]);
-                    this.$emit("schemaActive", 'BDIG')
-                    //VALORES POR DEFECTO
-                    this.$emit('change', {codigo: "0194l", esquema: "BDIG"})
-                }
-                else if(this.schemas[this.activeSchema] === 'BTN'){
+                if(this.schemas[this.activeSchema] === 'BTN'){
                     this.getBtnObjects();
                     this.getCommonAttributes(this.schemas[this.activeSchema]);
                     this.$emit("schemaActive", 'BTN')
@@ -170,16 +157,6 @@
                     //VALORES POR DEFECTO
                     this.$emit('change', {codigo: "1101a", esquema: "RT"})
                 }
-            },
-
-            //BDIG de momento es igual que BTN
-            async getBDIGObjects(){
-                await axios
-                .get(this.apiRoute + '/api/v1/bdig/objects')
-                .then ((data) => {
-                    this.btnObjects = data.data.resultados;
-                    this.items = this.classifyGroupBTN(this.btnObjects);
-                })
             },
 
             async getBtnObjects(){
@@ -277,7 +254,7 @@
 
     .logoImg {
         height: 3rem;
-        margin:0.5rem 0rem 2rem 0rem;
+        margin:0.5rem 0rem 1.5rem 1.8rem;
     }
 
 </style>   

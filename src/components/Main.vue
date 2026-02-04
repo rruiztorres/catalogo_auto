@@ -151,85 +151,106 @@
 
         <!-- VENTANA PRINCIPAL -->
         <v-card class="mainContainer" id="content" v-if="objeto">
-                <v-card-title>
-                    <h2 class="cardTitle">{{objeto.codigo + " " + objeto.nombre}}</h2>                 
-                    <v-spacer></v-spacer>
-                    <v-checkbox
-                        v-if="['BDIG','BTN'].includes(schemaActive)"
-                        class="autoCheck"
-                        disabled
-                        :input-value="objeto.actu_bdig"
-                        label="Se actualiza en entorno BDIG"
-                    ></v-checkbox>
-                    <v-checkbox
-                        v-if="['BDIG','BTN'].includes(schemaActive)"
-                        class="autoCheck"
-                        disabled
-                        :input-value="objeto.vis_bdig"
-                        label="Se visualiza en entorno BDIG"
-                    ></v-checkbox>
-                </v-card-title>
-                
-                <v-card-text>
-                    <v-simple-table class="mainTable">
-                        <tbody>
-                            <!-- esta parte hay que utilizar plantilla -->
-                            <tr>
-                                <td style="width:10%;"><b>NOM.CORTO</b></td>
-                                <td style="width: 68%"><text-highlight :queries="queries">{{objeto.nom_corto}}</text-highlight></td>
-                                <td style="width: 10%"><b>GEOMETRIA</b></td>
-                                <td style="width: 12%"><text-highlight :queries="queries">{{objeto.geometria}}</text-highlight></td>
-                            </tr>
-                            <tr>
-                                <td><b>DEFINICIÓN</b></td><td colspan="3"><text-highlight :queries="queries">{{objeto.definicion}}</text-highlight></td>
-                            </tr>
+            <v-card-title>
+                <v-row no-gutters dense>
+                    <v-col cols="12" sm="12" xl="6">
+                        <h2 class="cardTitle">{{objeto.codigo + " " + objeto.nombre}}</h2>
+                    </v-col>                
+                    <v-col cols="12" sm="6" xl="3">
+                        <v-checkbox
+                            style="margin-top:0.5rem;"
+                            v-if="['BDIG','BTN'].includes(schemaActive)"
+                            class="autoCheck"
+                            disabled
+                            :input-value="objeto.actu_bdig"
+                            label="Se actualiza en entorno BDIG"
+                        ></v-checkbox>
+                    </v-col>
+                    <v-col cols="12" sm="6" xl="3">
+                        <v-checkbox
+                            style="margin-top:0.5rem;"
+                            v-if="['BDIG','BTN'].includes(schemaActive)"
+                            class="autoCheck"
+                            disabled
+                            :input-value="objeto.vis_bdig"
+                            label="Se visualiza en entorno BDIG"
+                        ></v-checkbox>
+                    </v-col>
+                </v-row>
+            </v-card-title>
+            
+            <v-card-text>
+                <v-simple-table class="mainTable">
+                    <tbody>
+                        <!-- esta parte hay que utilizar plantilla -->
+                        <tr>
+                            <td style="width:10%;"><b>NOM.CORTO</b></td>
+                            <td style="width: 68%"><text-highlight :queries="queries">{{objeto.nom_corto}}</text-highlight></td>
+                            <td style="width: 10%"><b>GEOMETRIA</b></td>
+                            <td style="width: 12%"><text-highlight :queries="queries">{{objeto.geometria}}</text-highlight></td>
+                        </tr>
+                        <tr>
+                            <td><b>DEFINICIÓN</b></td><td colspan="3"><text-highlight :queries="queries">{{objeto.definicion}}</text-highlight></td>
+                        </tr>
 
-                            <!--ATRIBUTOS-->
-                            <tr class="attributeRow">
-                                <td colspan="4"><b>ATRIBUTOS</b></td>
-                            </tr>
-                            <tr v-for="atributo in objeto.attributes" :key="atributo.id">
-                                <td ><b><text-highlight :queries="queries">
-                                    {{atributo.nom_atrib}}</text-highlight></b>
-                                    <br/>
-                                    <span v-if="atributo.nom_codigo !== null && schemaActive !== 'RT'">({{atributo.nom_codigo}})</span>
-                                    
-                                </td>
-                                <td colspan="2" class="atribCol">
-                                    {{atributo.definicion}}
+                        <!--ATRIBUTOS-->
+                        <tr class="attributeRow">
+                            <td colspan="4"><b>ATRIBUTOS</b></td>
+                        </tr>
+                        <tr v-for="atributo in objeto.attributes" :key="atributo.id">
+                            <td ><b><text-highlight :queries="queries">
+                                {{atributo.nom_atrib}}</text-highlight></b>
+                                <br/>
+                                <span v-if="atributo.nom_codigo !== null && schemaActive !== 'RT'">({{atributo.nom_codigo}})</span>
+                                
+                            </td>
+                            <td colspan="2" class="atribCol">
+                                {{atributo.definicion}}
 
-                                    <!-- SI ES UN CODELIST MOSTRAMOS TABLA DE VALORES -->
-                                    <div  class="subTableContainer" v-if="atributo.tipo_valor === 'lista_val'">
-                                        <h4 class="valuesTitle">VALORES</h4>
-                                        <v-simple-table class="subTable">
-                                            <tbody>
-                                                    <tr v-for="valor in atributo.values" :key="valor.id">
-                                                        <!-- SI ES UN ELEMENTO TRANSFERIDO / VALOR NO TRANSFERIDO -->
-                                                        <td v-if="valor.actu_bdig"><text-highlight :queries="queries">{{valor.codigo_val}}</text-highlight></td>
-                                                        <td v-else><span style="color:#909396"><text-highlight :queries="queries">{{valor.codigo_val}}</text-highlight></span><br/><small style="color:red;">No transferido</small></td>
-                                                        
-                                                        <td v-if="valor.actu_bdig"><text-highlight :queries="queries">{{valor.valor}}</text-highlight></td>
-                                                        <td v-else><span style="color:#909396"><text-highlight :queries="queries">{{valor.valor}}</text-highlight></span><br/><small style="color:red;">No transferido</small></td>
+                                <!-- SI ES UN CODELIST MOSTRAMOS TABLA DE VALORES -->
+                                <div  class="subTableContainer" v-if="atributo.tipo_valor === 'lista_val'">
+                                    <h4 class="valuesTitle">VALORES</h4>
+                                    <v-simple-table class="subTable">
+                                        <tbody>
+                                                <tr v-for="valor in atributo.values" :key="valor.id">
+                                                    <td style="width:7%"><text-highlight :queries="queries">{{valor.codigo_val}}</text-highlight></td>
+                                                    <td style="width:13%"><text-highlight :queries="queries">{{valor.valor}}</text-highlight></td>
+                                                    <td style="width:65%"><text-highlight :queries="queries">{{valor.definicion}}</text-highlight></td>
 
-                                                        <td v-if="valor.actu_bdig"><text-highlight :queries="queries">{{valor.definicion}}</text-highlight></td>
-                                                        <td v-else><span style="color:#909396"><text-highlight :queries="queries">{{valor.definicion}}</text-highlight></span><br/><small style="color:red;">No transferido</small></td>
-                                                    </tr>
-                                            </tbody>
-                                        </v-simple-table>
-                                    </div>
-                                    <!-- FIN TABLA VALORES ATRIBUTO -->
-                                </td>                              
-                                <td><text-highlight :queries="queries">{{atributo.tipo_valor}}</text-highlight></td>
-                            </tr>
-                        </tbody>
-                    </v-simple-table>
-                </v-card-text>
-                
+                                                    <!--CRITERIOS ACTUALIZAZION-->   
+                                                    <td style="width:15%"
+                                                        v-if="valor.criterio_actu">
+                                                        <span style="color:red;"
+                                                        v-for="criterio, a in valor.criterio_actu" :key="a">
+                                                            {{criterio}}
+                                                        </span>
+                                                    </td>
+                                                    <!-- SI NO EXISTEN CRITERIOS-->
+                                                    <td v-else></td>
+                                                </tr>
+                                        </tbody>
+                                    </v-simple-table>
+                                </div>
+                                <!-- FIN TABLA VALORES ATRIBUTO -->
+                            </td>                              
+                            <td><text-highlight :queries="queries">{{atributo.tipo_valor}}</text-highlight></td>
+                        </tr>
+                    </tbody>
+                </v-simple-table>
+            </v-card-text>
+            
 
-                <!-- NORMAS DE CAPTURA -->
-                <v-card-text>
-                    <div v-html="normasCaptura"></div>
-                </v-card-text>
+            <!-- NORMAS DE CAPTURA -->
+            <v-card-text>
+                <div v-html="normasCaptura"></div>
+            </v-card-text>
+
+            <!--BOTON IR ARRIBA -->
+            <v-btn class="goUp"
+            title="Ir arriba"
+            @click="scrollContainerToTop"
+            fab color="blue" dark x-large><v-icon>mdi-arrow-up</v-icon>
+            </v-btn>
         </v-card>
         
     </div>
@@ -273,16 +294,17 @@ export default {
 
     methods:{
         
-        scrollContainerToTop(id) {
-            const el = document.getElementById(id);
+        scrollContainerToTop() {
+            const el = document.getElementById("content");
             if (el) el.scrollTo({ top: 0, behavior: 'smooth' });
         },
 
         async initialize(object){
             //EVITA NORMAS DE CAPTURA VACIAS
             if(this.normActive === undefined ){this.normActive = this.active}
+            
+            //SE ACTIVAN LOS ATRIBUTOS COMUNES
             if(object.active === 'commonAttributes'){
-                //SE ACTIVAN LOS ATRIBUTOS COMUNES
                 await axios
                 .get(this.apiRoute + `/api/v1/${object.esquema}/attributes`)
                 .then((data) => {
@@ -292,26 +314,60 @@ export default {
                         object: data.data.atributosComunes,
                     };
                 })
+
+            //SE ACTIVAN LOS OBJETOS
             } else {
-                //SE ACTIVAN LOS OBJETOS
                 await axios
                 .get(this.apiRoute + `/api/v1/${object.esquema}/diccionario/` + object.codigo)
                 .then((data) => {
                     this.objeto = data.data.objeto;
-                    console.log(this.objeto)
+                    
+                    //EVALUAMOS CRITERIOS ACTUALIZACION
+                    if(object.esquema === 'BTN'){
+                        this.objeto.attributes.forEach(a => {
+                            if(a.tipo_valor === 'lista_val'){
+                                a.values.forEach((val)=>{
+                                    if (val.criterio_actu !== null){
+                                        let criterios = val.criterio_actu.split("#");
+                                        val.criterio_actu = [];
+                                        criterios.forEach((criterio)=>{
+                                            if(criterio.length>0){
+                                                this.evaluateCriterio(criterio)
+                                                .then((data)=>{
+                                                    val.criterio_actu.push(data)
+                                                })
+                                            }
+                                    })
+                                    } else {
+                                        val.criterio_actu = [];
+                                    }
+                                })
+                            }
+                        });
+                    }
                     this.atributosComunes = undefined;
-                    this.scrollContainerToTop("content")
+                    this.scrollContainerToTop()
                 })
+            
+                //OBTENEMOS NORMAS DE CAPTURA
+                const response = await fetch(`${this.normasRoute}${this.objeto.codigo + "_" + this.objeto.nom_corto}.html`, { cache: 'reload' })
+                if(response.status === 200){
+                    this.normasCaptura = await response.text();
+                } else {
+                    this.normasCaptura = '<h1>No hay contenido</h1>'
+                }
             }
 
-            //OBTENEMOS NORMAS DE CAPTURA
-            const response = await fetch(`${this.normasRoute}${this.objeto.codigo + "_" + this.objeto.nom_corto}.html`, { cache: 'reload' })
-            if(response.status === 200){
-                this.normasCaptura = await response.text();
-            } else {
-                this.normasCaptura = '<h1>No hay contenido</h1>'
-            }
+        },
 
+        async evaluateCriterio(criterio){
+            let response = undefined
+            await axios
+            .get(this.apiRoute + '/api/v1/btn/criterio_actu' + "/" + criterio)
+            .then((data)=>{
+                response = data.data.criterios_actu[0].descripcion;
+            })
+            return response;
         },
 
         viewResults(item){
@@ -323,10 +379,6 @@ export default {
             this.normActive = this.selectObject
             this.initialize(this.normActive)
         },
-
-        print(){
-            console.warn("Función imprimir no disponible por el momento")
-        }
     },
 
     data(){
@@ -488,6 +540,12 @@ export default {
     .picture img {
         width: 100%;
         box-shadow: 2px 2px 3px 0px lightgrey;
+    }
+
+    .goUp {
+        position: sticky;
+        bottom: 2rem;
+        left: 100%;
     }
 
 
